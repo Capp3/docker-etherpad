@@ -1,0 +1,19 @@
+FROM etherpad/etherpad:latest
+
+# Core plugins - tested and working
+# These provide the essential Word-like editing experience
+RUN pnpm run plugins i \
+  ep_headings2 \
+  ep_image_upload \
+  ep_font_color \
+  ep_spellcheck \
+  ep_align \
+  ep_adminpads3 \
+  ep_table_of_contents \
+  ep_author_neat2 \
+  ep_comments_page \
+  # ep_file_menu_toolbar \
+  ep_embedded_hyperlinks2 \
+  ep_markdown
+
+CMD ["pnpm", "run", "prod"]
