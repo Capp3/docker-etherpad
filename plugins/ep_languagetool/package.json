@@ -1,0 +1,23 @@
+{
+  "name": "ep_languagetool",
+  "version": "1.0.0",
+  "description": "LanguageTool grammar checking integration for Etherpad",
+  "author": "EtherpadPlus Team",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ep_languagetool"
+  },
+  "keywords": [
+    "etherpad",
+    "plugin",
+    "grammar",
+    "languagetool",
+    "spell check",
+    "writing"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -12,6 +12,7 @@ volumes:
   postgres_data:
   plugins:
   etherpad-var:
+  languagetool_ngrams:
 
 ##### Services
 services:
@@ -72,6 +73,22 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  # language-tool:
-  #   image: erikvl87/languagetool
-  #   # Uncomment and configure for Phase 2 (LanguageTool integration)
+  languagetool:
+    build:
+      context: .
+      dockerfile: dockerfile.languagetool
+    tty: true
+    stdin_open: true
+    volumes:
+      - languagetool_ngrams:/ngrams
+    environment:
+      LANG: en_GB.UTF-8
+      LANGUAGE: en_GB:en
+      LC_ALL: en_GB.UTF-8
+      download_ngrams_for_langs: ${DOCKER_COMPOSE_LANGTOOL_NGRAM_LANGS:-none}
+    restart: always
+    networks:
+      - etherpadplus
+    container_name: languagetool
+    ports:
+      - "${DOCKER_COMPOSE_LANGTOOL_PORT_PUBLISHED:-8081}:${DOCKER_COMPOSE_LANGTOOL_PORT_TARGET:-8081}"

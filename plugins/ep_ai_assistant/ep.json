@@ -1,0 +1,16 @@
+{
+  "parts": [
+    {
+      "name": "aiAssistant",
+      "client_hooks": {
+        "aceToolbarUpdateLine": "ep_ai_assistant/static/js/index:aceToolbarUpdateLine",
+        "aceEditEvent": "ep_ai_assistant/static/js/index:aceEditEvent",
+        "aceEditorCSS": "ep_ai_assistant/static/css/index:aceEditorCSS",
+        "clientVars": "ep_ai_assistant/static/js/index:clientVars"
+      },
+      "hooks": {
+        "expressCreateServer": "ep_ai_assistant/server/index:expressCreateServer"
+      }
+    }
+  ]
+}

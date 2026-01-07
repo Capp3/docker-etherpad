@@ -15,13 +15,37 @@ RUN pnpm run plugins i \
   ep_embedded_hyperlinks2 \
   ep_markdown
 
-# Switch to root user for package installation (apk requires root privileges)
-# The base etherpad image runs as 'etherpad' user, but we need root for apk commands
+# Switch to root user for custom plugin installation and system packages
+# The base etherpad image runs as 'etherpad' user, but we need root for package installs
 USER root
+
+# Copy custom plugins to plugin_packages directory (where Etherpad expects them)
+COPY plugins/ep_ai_assistant /opt/etherpad-lite/src/plugin_packages/ep_ai_assistant
+COPY plugins/ep_languagetool /opt/etherpad-lite/src/plugin_packages/ep_languagetool
+
+# Create symlinks in src/node_modules (Etherpad's plugin structure)
+RUN cd /opt/etherpad-lite/src/node_modules && \
+    ln -s ../plugin_packages/ep_ai_assistant ep_ai_assistant && \
+    ln -s ../plugin_packages/ep_languagetool ep_languagetool
+
+# Fix permissions for all custom plugin files
+RUN chown -R etherpad:etherpad /opt/etherpad-lite/src/plugin_packages/ep_ai_assistant && \
+    chown -R etherpad:etherpad /opt/etherpad-lite/src/plugin_packages/ep_languagetool
+
+# Copy custom entrypoint script
+COPY assets/etherpad/custom-entrypoint.sh /usr/local/bin/custom-entrypoint.sh
+RUN chmod +x /usr/local/bin/custom-entrypoint.sh
+
+# Fix locale file for ep_embedded_hyperlinks2 to fix translation warning
+RUN if [ -d /opt/etherpad-lite/node_modules/ep_embedded_hyperlinks2 ]; then \
+      mkdir -p /opt/etherpad-lite/node_modules/ep_embedded_hyperlinks2/locales && \
+      echo '{"ep_embedded_hyperlinks.editbarButtons.hyperlink": "Hyperlink"}' > \
+        /opt/etherpad-lite/node_modules/ep_embedded_hyperlinks2/locales/en.json; \
+    fi
 
 # Install LibreOffice & Common Fonts
 RUN apk --no-cache add bash libreoffice util-linux openjdk8-jre libreoffice-common \
-  font-droid-nonlatin font-droid ttf-dejavu ttf-freefont ttf-liberation
+  font-droid-nonlatin font-droid ttf-dejavu ttf-freefont ttf-liberation jq
 
 # Install Microsoft Core Fonts
 RUN apk --no-cache add msttcorefonts-installer fontconfig && \
@@ -36,4 +60,6 @@ VOLUME /exports
 VOLUME /backups
 VOLUME /images
 
+# Use custom entrypoint to register plugins at startup
+ENTRYPOINT ["/usr/local/bin/custom-entrypoint.sh"]
 CMD ["pnpm", "run", "prod"]

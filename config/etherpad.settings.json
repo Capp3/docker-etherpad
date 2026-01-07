@@ -165,5 +165,27 @@
     },
     "fileTypes": ["jpeg", "jpg", "bmp", "gif", "png"],
     "maxFileSize": 5000000
+  },
+  "ep_ai_assistant": {
+    "provider": "${AI_PROVIDER:ollama}",
+    "ollama": {
+      "apiUrl": "${OLLAMA_API_URL:http://ollama:11434}",
+      "defaultModel": "${OLLAMA_MODEL:llama2}",
+      "timeout": 30000
+    },
+    "openrouter": {
+      "apiUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "${OPENROUTER_API_KEY:}",
+      "defaultModel": "${OPENROUTER_MODEL:openai/gpt-3.5-turbo}",
+      "timeout": 30000
+    },
+    "actions": [
+      "Rewrite for clarity",
+      "Shorten",
+      "Expand",
+      "Fix grammar",
+      "Improve tone",
+      "Summarize"
+    ]
   }
 }
