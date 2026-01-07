@@ -24,9 +24,10 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      # Removed plugins volume - plugins are baked into the image
-      # - plugins:/opt/etherpad-lite/src/plugin_packages
+      - ./data/exports:/exports
+      - ./data/backups:/backups
       - etherpad-var:/opt/etherpad-lite/var
+      - ./config/etherpad.settings.json:/opt/etherpad-lite/settings.json
     depends_on:
       - postgres
     environment:
@@ -42,8 +43,10 @@ services:
       # For now, the env var DEFAULT_PAD_TEXT cannot be unset or empty; it seems to be mandatory in the latest version of etherpad
       DEFAULT_PAD_TEXT: ${DOCKER_COMPOSE_APP_DEFAULT_PAD_TEXT:- }
       DISABLE_IP_LOGGING: ${DOCKER_COMPOSE_APP_DISABLE_IP_LOGGING:-false}
-      SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
+      SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE_PATH:-'/usr/bin/soffice'}
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
+      ETHERPAD_FQDN: ${DOCKER_COMPOSE_APP_ETHERPAD_FQDN:-localhost}
+      INSTALL_SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
     restart: always
     networks:
       - etherpadplus

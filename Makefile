@@ -66,6 +66,8 @@ stop: ## Stop all services
 	@docker compose down
 	@echo "✓ Services stopped"
 
+down: stop
+
 restart: stop up ## Restart all services
 
 logs: ## Show logs for all services
@@ -125,3 +127,6 @@ format-yml: ## Format YAML files
 		exit 1; \
 	fi
 	@echo "✓ YAML files formatted"
+
+exec-etherpad: ## Execute command in etherpad container
+	@docker exec -it etherpad /bin/sh
