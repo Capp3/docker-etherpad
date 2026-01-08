@@ -19,19 +19,6 @@ RUN pnpm run plugins i \
 # The base etherpad image runs as 'etherpad' user, but we need root for package installs
 USER root
 
-# Copy custom plugins to plugin_packages directory (where Etherpad expects them)
-COPY plugins/ep_ai_assistant /opt/etherpad-lite/src/plugin_packages/ep_ai_assistant
-COPY plugins/ep_languagetool /opt/etherpad-lite/src/plugin_packages/ep_languagetool
-
-# Create symlinks in src/node_modules (Etherpad's plugin structure)
-RUN cd /opt/etherpad-lite/src/node_modules && \
-    ln -s ../plugin_packages/ep_ai_assistant ep_ai_assistant && \
-    ln -s ../plugin_packages/ep_languagetool ep_languagetool
-
-# Fix permissions for all custom plugin files
-RUN chown -R etherpad:etherpad /opt/etherpad-lite/src/plugin_packages/ep_ai_assistant && \
-    chown -R etherpad:etherpad /opt/etherpad-lite/src/plugin_packages/ep_languagetool
-
 # Copy custom entrypoint script
 COPY assets/etherpad/custom-entrypoint.sh /usr/local/bin/custom-entrypoint.sh
 RUN chmod +x /usr/local/bin/custom-entrypoint.sh

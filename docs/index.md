@@ -9,6 +9,7 @@ Welcome to **Etherpad Plus**, a self-hosted, Word-like collaborative editor buil
 - [Plugin Features](./plugin-features.md) - All available features
 - [Export Guide](./export-guide.md) - Exporting documents
 - [Admin Guide](./admin-guide.md) - Administration and management
+- [API Guide](./api-guide.md) - HTTP API documentation and examples
 - [Troubleshooting](./troubleshooting.md) - Common issues and solutions
 
 ---
@@ -28,6 +29,7 @@ Etherpad Plus is a **self-hosted collaborative text editor** that provides a Wor
 ## Key Features
 
 ### ✨ Word-Like Editing
+
 - Structured headings (H1, H2, H3)
 - Text formatting (bold, italic, colors, alignment)
 - Image insertion
@@ -35,12 +37,14 @@ Etherpad Plus is a **self-hosted collaborative text editor** that provides a Wor
 - Table of contents generation
 
 ### 🤝 Collaboration
+
 - Real-time multi-user editing
 - See who's editing with you
 - Comments system for feedback
 - Author identification
 
 ### 📄 Document Management
+
 - Export to multiple formats (HTML, ODT, DOCX)
 - Markdown support
 - Hyperlink support

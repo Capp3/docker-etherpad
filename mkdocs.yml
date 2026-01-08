@@ -1,0 +1,40 @@
+site_name: Etherpad Plus Documentation
+site_description: Self-hosted, Word-like collaborative editor built on Etherpad
+site_author: Etherpad Plus Team
+
+repo_url: https://github.com/your-username/docker-etherpad
+repo_name: docker-etherpad
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  include_search_page: false
+  search_index_only: false
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - User Guide: user-guide.md
+  - Plugin Features: plugin-features.md
+  - Export Guide: export-guide.md
+  - Admin Guide: admin-guide.md
+  - API Guide: api-guide.md
+  - Troubleshooting: troubleshooting.md
+
+markdown_extensions:
+  - codehilite
+  - fenced_code
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+
+extra:
+  version: 1.0.0
+
+copyright: Copyright &copy; 2026 Etherpad Plus Team
