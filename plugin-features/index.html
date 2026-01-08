@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Etherpad Plus Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Plugin Features - Etherpad Plus Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Plugin Features";
+        var mkdocs_page_input_path = "plugin-features.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Etherpad Plus Documentation
+        </a>
+        <div class="version">
+          1.0.0
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user-guide/">User Guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Plugin Features</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#word-like-editing-plugins">Word-Like Editing Plugins</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-ep_headings2-structured-headings">1. ep_headings2 - Structured Headings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-ep_image_upload-image-insertion">2. ep_image_upload - Image Insertion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-ep_font_color-text-color-formatting">3. ep_font_color - Text Color Formatting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-ep_spellcheck-browser-spell-checking">4. ep_spellcheck - Browser Spell Checking</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-ep_align-text-alignment">5. ep_align - Text Alignment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enhanced-features">Enhanced Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6-ep_adminpads3-admin-pad-management">6. ep_adminpads3 - Admin Pad Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-ep_table_of_contents-automatic-toc">7. ep_table_of_contents - Automatic TOC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-ep_author_neat2-enhanced-author-display">8. ep_author_neat2 - Enhanced Author Display</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-ep_comments_page-sidebar-comments">9. ep_comments_page - Sidebar Comments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10-ep_embedded_hyperlinks2-hyperlink-support">10. ep_embedded_hyperlinks2 - Hyperlink Support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11-ep_markdown-markdown-syntax-support">11. ep_markdown - Markdown Syntax Support</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plugin-summary">Plugin Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plugin-versions">Plugin Versions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tips-for-using-plugins">Tips for Using Plugins</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-the-most-out-of-plugins">Getting the Most Out of Plugins</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-tips">Performance Tips</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#need-help">Need Help?</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../export-guide/">Export Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../admin-guide/">Admin Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-guide/">API Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Etherpad Plus Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Plugin Features</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/your-username/docker-etherpad/edit/master/docs/plugin-features.md">Edit on docker-etherpad</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="plugin-features-complete-reference">Plugin Features - Complete Reference<a class="headerlink" href="#plugin-features-complete-reference" title="Permanent link">&para;</a></h1>
+<p>Etherpad Plus includes 11 powerful plugins that provide Word-like editing capabilities. This guide covers all available features.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#word-like-editing-plugins">Word-Like Editing Plugins</a></li>
+<li><a href="#enhanced-features">Enhanced Features</a></li>
+<li><a href="#plugin-details">Plugin Details</a></li>
+</ol>
+<hr />
+<h2 id="word-like-editing-plugins">Word-Like Editing Plugins<a class="headerlink" href="#word-like-editing-plugins" title="Permanent link">&para;</a></h2>
+<p>These plugins provide the core Word-like editing experience.</p>
+<h3 id="1-ep_headings2-structured-headings">1. ep_headings2 - Structured Headings<a class="headerlink" href="#1-ep_headings2-structured-headings" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Create document structure with proper headings</p>
+<p><strong>Features:</strong>
+- Three heading levels (H1, H2, H3)
+- Automatic formatting
+- Integration with Table of Contents
+- Better document exports</p>
+<p><strong>How to Use:</strong>
+1. Place cursor on a line
+2. Select heading level from toolbar dropdown
+3. Type your heading text
+4. Headings automatically appear in TOC</p>
+<p><strong>Best Practices:</strong>
+- Use H1 for document title (one per document)
+- Use H2 for major sections
+- Use H3 for subsections
+- Maintain consistent heading hierarchy</p>
+<hr />
+<h3 id="2-ep_image_upload-image-insertion">2. ep_image_upload - Image Insertion<a class="headerlink" href="#2-ep_image_upload-image-insertion" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Insert images into your documents</p>
+<p><strong>Features:</strong>
+- Upload images via button or drag-and-drop
+- Support for JPEG, PNG, GIF, BMP
+- Maximum file size: 5MB
+- Images stored on server
+- Images included in exports</p>
+<p><strong>How to Use:</strong>
+1. Click Image Upload button in toolbar
+2. Select image file from your computer
+3. OR drag and drop image into editor
+4. Image appears inline with text</p>
+<p><strong>Supported Formats:</strong>
+- JPEG / JPG
+- PNG
+- GIF
+- BMP</p>
+<p><strong>Storage:</strong>
+- Images stored in <code>/images</code> directory
+- Accessible via URL: <code>http://yourdomain/images/filename</code>
+- Persists across sessions</p>
+<hr />
+<h3 id="3-ep_font_color-text-color-formatting">3. ep_font_color - Text Color Formatting<a class="headerlink" href="#3-ep_font_color-text-color-formatting" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Change text colors for emphasis and organization</p>
+<p><strong>Features:</strong>
+- Wide color palette
+- Quick color selection
+- Works with selected text
+- Colors preserved in exports</p>
+<p><strong>How to Use:</strong>
+1. Select text you want to color
+2. Click Font Color button (A with colored underline)
+3. Choose color from palette
+4. Text changes color immediately</p>
+<p><strong>Tips:</strong>
+- Use colors sparingly for emphasis
+- Dark colors work best for readability
+- Consider color-blind accessibility</p>
+<hr />
+<h3 id="4-ep_spellcheck-browser-spell-checking">4. ep_spellcheck - Browser Spell Checking<a class="headerlink" href="#4-ep_spellcheck-browser-spell-checking" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Automatic spell checking as you type</p>
+<p><strong>Features:</strong>
+- Browser-native spell checking
+- Red underlines for misspelled words
+- Right-click for suggestions
+- Works automatically
+- No configuration needed</p>
+<p><strong>How to Use:</strong>
+- Just start typing!
+- Misspelled words show red underlines
+- Right-click for suggestions
+- Select suggestion to correct</p>
+<p><strong>Browser Support:</strong>
+- Works in all modern browsers
+- Uses browser's built-in dictionary
+- Language based on browser settings</p>
+<hr />
+<h3 id="5-ep_align-text-alignment">5. ep_align - Text Alignment<a class="headerlink" href="#5-ep_align-text-alignment" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Control text alignment (left, center, right, justify)</p>
+<p><strong>Features:</strong>
+- Left alignment (default)
+- Center alignment
+- Right alignment
+- Full justification
+- Per-paragraph control</p>
+<p><strong>How to Use:</strong>
+1. Place cursor in paragraph
+2. Click alignment button:
+   - <strong>Left</strong> - Align to left margin
+   - <strong>Center</strong> - Center text
+   - <strong>Right</strong> - Align to right margin
+   - <strong>Justify</strong> - Stretch to fill line</p>
+<p><strong>Use Cases:</strong>
+- <strong>Left</strong>: Standard text (default)
+- <strong>Center</strong>: Titles, headings
+- <strong>Right</strong>: Signatures, dates
+- <strong>Justify</strong>: Formal documents</p>
+<hr />
+<h2 id="enhanced-features">Enhanced Features<a class="headerlink" href="#enhanced-features" title="Permanent link">&para;</a></h2>
+<p>These plugins add advanced functionality beyond basic editing.</p>
+<h3 id="6-ep_adminpads3-admin-pad-management">6. ep_adminpads3 - Admin Pad Management<a class="headerlink" href="#6-ep_adminpads3-admin-pad-management" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Administrative tools for pad management</p>
+<p><strong>Features:</strong>
+- View all pads
+- Delete pads
+- Manage pad access
+- Pad statistics
+- Admin-only features</p>
+<p><strong>Access:</strong>
+- Available to administrators only
+- Access via admin panel: <code>/admin/pads</code>
+- Requires admin password</p>
+<p><strong>Features:</strong>
+- List all pads
+- Search pads
+- Delete unused pads
+- View pad metadata
+- Manage pad permissions</p>
+<hr />
+<h3 id="7-ep_table_of_contents-automatic-toc">7. ep_table_of_contents - Automatic TOC<a class="headerlink" href="#7-ep_table_of_contents-automatic-toc" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Generate table of contents from headings</p>
+<p><strong>Features:</strong>
+- Automatic generation from headings
+- Updates in real-time
+- Click to jump to sections
+- Shows heading hierarchy
+- Toggle visibility</p>
+<p><strong>How to Use:</strong>
+1. Create headings in your document (H1, H2, H3)
+2. Click TOC button in toolbar
+3. Table of contents appears
+4. Click any item to jump to that section</p>
+<p><strong>Features:</strong>
+- <strong>Auto-updates</strong> as you add/change headings
+- <strong>Hierarchical display</strong> shows document structure
+- <strong>Click navigation</strong> jumps to sections
+- <strong>Collapsible</strong> for long documents</p>
+<p><strong>Best Practices:</strong>
+- Use consistent heading structure
+- TOC works best with proper H1/H2/H3 hierarchy
+- Update headings, TOC updates automatically</p>
+<hr />
+<h3 id="8-ep_author_neat2-enhanced-author-display">8. ep_author_neat2 - Enhanced Author Display<a class="headerlink" href="#8-ep_author_neat2-enhanced-author-display" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Better visualization of who's editing</p>
+<p><strong>Features:</strong>
+- Color-coded authors
+- Author name display
+- Cursor tracking
+- Author list sidebar
+- Real-time updates</p>
+<p><strong>How It Works:</strong>
+- Each author gets unique color
+- Cursor appears in author's color
+- Name displayed in author list
+- Updates in real-time</p>
+<p><strong>Benefits:</strong>
+- See who's editing what
+- Avoid editing conflicts
+- Better collaboration awareness
+- Clear visual feedback</p>
+<hr />
+<h3 id="9-ep_comments_page-sidebar-comments">9. ep_comments_page - Sidebar Comments<a class="headerlink" href="#9-ep_comments_page-sidebar-comments" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Add comments without editing main text</p>
+<p><strong>Features:</strong>
+- Comment on specific text
+- Sidebar comment panel
+- Reply to comments
+- Resolve comments
+- Comment threading</p>
+<p><strong>How to Use:</strong>
+1. Select text you want to comment on
+2. Open comments sidebar
+3. Type your comment
+4. Save comment
+5. Comment marker appears</p>
+<p><strong>Comment Features:</strong>
+- <strong>Text selection</strong> - Comment on specific text
+- <strong>Sidebar view</strong> - All comments in one place
+- <strong>Replies</strong> - Threaded discussions
+- <strong>Resolution</strong> - Mark comments as resolved
+- <strong>Persistence</strong> - Comments stay with document</p>
+<p><strong>Use Cases:</strong>
+- <strong>Feedback</strong> - Leave suggestions
+- <strong>Questions</strong> - Ask about content
+- <strong>Review</strong> - Document review process
+- <strong>Discussion</strong> - Collaborative discussion</p>
+<hr />
+<h3 id="10-ep_embedded_hyperlinks2-hyperlink-support">10. ep_embedded_hyperlinks2 - Hyperlink Support<a class="headerlink" href="#10-ep_embedded_hyperlinks2-hyperlink-support" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Create clickable links in documents</p>
+<p><strong>Features:</strong>
+- Create hyperlinks
+- Edit existing links
+- Remove links
+- Links work in exports
+- URL validation</p>
+<p><strong>How to Use:</strong>
+1. Select text you want to link
+2. Click Link button (chain icon)
+3. Enter URL
+4. Save link
+5. Text becomes clickable</p>
+<p><strong>Link Features:</strong>
+- <strong>Clickable</strong> - Links work in editor
+- <strong>Editable</strong> - Modify or remove links
+- <strong>Exported</strong> - Links work in exported files
+- <strong>Validation</strong> - Checks URL format</p>
+<p><strong>Best Practices:</strong>
+- Use descriptive link text
+- Test links after creating
+- Use full URLs (https://example.com)
+- Consider link accessibility</p>
+<hr />
+<h3 id="11-ep_markdown-markdown-syntax-support">11. ep_markdown - Markdown Syntax Support<a class="headerlink" href="#11-ep_markdown-markdown-syntax-support" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Use Markdown syntax for quick formatting</p>
+<p><strong>Features:</strong>
+- Markdown syntax support
+- Auto-conversion to formatted text
+- Works alongside toolbar
+- Common Markdown features</p>
+<p><strong>Supported Syntax:</strong>
+- <strong>Bold</strong>: <code>**text**</code> or <code>__text__</code>
+- <strong>Italic</strong>: <code>*text*</code> or <code>_text_</code>
+- <strong>Headings</strong>: <code># H1</code>, <code>## H2</code>, <code>### H3</code>
+- <strong>Links</strong>: <code>[text](url)</code>
+- <strong>Lists</strong>: <code>- item</code> or <code>1. item</code></p>
+<p><strong>How to Use:</strong>
+1. Type Markdown syntax as you write
+2. Syntax converts to formatted text automatically
+3. Works with toolbar buttons
+4. No special mode needed</p>
+<p><strong>Examples:</strong></p>
+<pre class="codehilite"><code class="language-markdown"># Main Title
+
+## Section
+
+**Bold** and *italic* text
+
+- Bullet point
+- Another point
+
+[Link](https://example.com)
+</code></pre>
+
+<p><strong>Benefits:</strong>
+- <strong>Fast formatting</strong> - Type instead of clicking
+- <strong>Familiar</strong> - Standard Markdown syntax
+- <strong>Flexible</strong> - Works with toolbar too
+- <strong>Efficient</strong> - Less mouse clicking</p>
+<hr />
+<h2 id="plugin-summary">Plugin Summary<a class="headerlink" href="#plugin-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Category</th>
+<th>Key Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ep_headings2</td>
+<td>Word-Like</td>
+<td>Structured headings (H1/H2/H3)</td>
+</tr>
+<tr>
+<td>ep_image_upload</td>
+<td>Word-Like</td>
+<td>Image insertion</td>
+</tr>
+<tr>
+<td>ep_font_color</td>
+<td>Word-Like</td>
+<td>Text color formatting</td>
+</tr>
+<tr>
+<td>ep_spellcheck</td>
+<td>Word-Like</td>
+<td>Browser spell checking</td>
+</tr>
+<tr>
+<td>ep_align</td>
+<td>Word-Like</td>
+<td>Text alignment</td>
+</tr>
+<tr>
+<td>ep_adminpads3</td>
+<td>Enhanced</td>
+<td>Admin pad management</td>
+</tr>
+<tr>
+<td>ep_table_of_contents</td>
+<td>Enhanced</td>
+<td>Automatic TOC generation</td>
+</tr>
+<tr>
+<td>ep_author_neat2</td>
+<td>Enhanced</td>
+<td>Author visualization</td>
+</tr>
+<tr>
+<td>ep_comments_page</td>
+<td>Enhanced</td>
+<td>Sidebar comments</td>
+</tr>
+<tr>
+<td>ep_embedded_hyperlinks2</td>
+<td>Enhanced</td>
+<td>Hyperlink support</td>
+</tr>
+<tr>
+<td>ep_markdown</td>
+<td>Enhanced</td>
+<td>Markdown syntax</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="plugin-versions">Plugin Versions<a class="headerlink" href="#plugin-versions" title="Permanent link">&para;</a></h2>
+<p>Current installed versions:
+- ep_headings2: 0.2.68
+- ep_image_upload: 1.0.105
+- ep_font_color: 0.0.89
+- ep_spellcheck: 0.0.65
+- ep_align: 10.0.2
+- ep_adminpads3: 3.0.22
+- ep_table_of_contents: 0.3.89
+- ep_author_neat2: 2.0.11
+- ep_comments_page: 10.0.4
+- ep_embedded_hyperlinks2: 1.2.4
+- ep_markdown: 10.0.1</p>
+<hr />
+<h2 id="tips-for-using-plugins">Tips for Using Plugins<a class="headerlink" href="#tips-for-using-plugins" title="Permanent link">&para;</a></h2>
+<h3 id="getting-the-most-out-of-plugins">Getting the Most Out of Plugins<a class="headerlink" href="#getting-the-most-out-of-plugins" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Combine features</strong> - Use headings + TOC for structure</li>
+<li><strong>Use comments</strong> - Collaborate without editing main text</li>
+<li><strong>Format consistently</strong> - Use headings and colors consistently</li>
+<li><strong>Export regularly</strong> - Test exports to ensure formatting preserved</li>
+</ol>
+<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Large images</strong> - Optimize before uploading</li>
+<li><strong>Many comments</strong> - May slow down very long documents</li>
+<li><strong>Many users</strong> - All plugins work well with multiple editors</li>
+</ul>
+<hr />
+<h2 id="need-help">Need Help?<a class="headerlink" href="#need-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li>See <a href="../user-guide/">User Guide</a> for detailed usage instructions</li>
+<li>Check <a href="../troubleshooting/">Troubleshooting</a> for plugin issues</li>
+<li>Contact your administrator for technical support</li>
+</ul>
+<hr />
+<p><strong>Next:</strong> Learn about <a href="../export-guide/">exporting documents</a> →</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../user-guide/" class="btn btn-neutral float-left" title="User Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../export-guide/" class="btn btn-neutral float-right" title="Export Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2026 Etherpad Plus Team</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/your-username/docker-etherpad" class="fa fa-code-fork" style="color: #fcfcfc"> docker-etherpad</a>
+        </span>
+    
+    
+      <span><a href="../user-guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../export-guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

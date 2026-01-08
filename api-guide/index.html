@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Etherpad Plus Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Guide - Etherpad Plus Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Guide";
+        var mkdocs_page_input_path = "api-guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Etherpad Plus Documentation
+        </a>
+        <div class="version">
+          1.0.0
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user-guide/">User Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../plugin-features/">Plugin Features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../export-guide/">Export Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../admin-guide/">Admin Guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#api-version">API Version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-cases">Use Cases</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#obtaining-your-api-key">Obtaining Your API Key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-api-key">Using the API Key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-best-practices">Security Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api-endpoints">API Endpoints</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pad-management">Pad Management</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-pad">Create Pad</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-pad">Delete Pad</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#list-all-pads">List All Pads</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-pad-text">Get Pad Text</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#set-pad-text">Set Pad Text</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#append-text-to-pad">Append Text to Pad</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-pad-html">Get Pad HTML</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#set-pad-html">Set Pad HTML</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-group-management">User &amp; Group Management</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-author">Create Author</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-group">Create Group</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-group-pad">Create Group Pad</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#list-groups">List Groups</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#session-management">Session Management</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-session">Create Session</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-session">Delete Session</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-session-info">Get Session Info</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pad-metadata">Pad Metadata</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-revisions-count">Get Revisions Count</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-last-edited">Get Last Edited</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#list-authors-of-pad">List Authors of Pad</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-read-only-id">Get Read-Only ID</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complete-examples">Complete Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1-creating-a-pad-for-a-user">Example 1: Creating a Pad for a User</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#step-1-create-or-get-author">Step 1: Create or Get Author</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-2-create-or-get-group">Step 2: Create or Get Group</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-3-create-pad-in-group">Step 3: Create Pad in Group</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-4-create-session">Step 4: Create Session</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-5-set-session-cookie-and-embed-pad">Step 5: Set Session Cookie and Embed Pad</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2-embedding-pads-in-web-applications">Example 2: Embedding Pads in Web Applications</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3-exporting-pad-content-programmatically">Example 3: Exporting Pad Content Programmatically</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4-managing-user-access-with-groups-and-sessions">Example 4: Managing User Access with Groups and Sessions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#response-format">Response Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-codes">Error Codes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling-example">Error Handling Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-patterns">Integration Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rest-client-examples">REST Client Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#curl">cURL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#python-with-requests">Python with requests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#javascriptnodejs">JavaScript/Node.js</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sso-integration-considerations">SSO Integration Considerations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#official-documentation">Official Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#additional-resources">Additional Resources</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference">Quick Reference</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-endpoints">Common Endpoints</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#response-codes">Response Codes</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Etherpad Plus Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/your-username/docker-etherpad/edit/master/docs/api-guide.md">Edit on docker-etherpad</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="etherpad-api-guide">Etherpad API Guide<a class="headerlink" href="#etherpad-api-guide" title="Permanent link">&para;</a></h1>
+<p>Complete guide to using the Etherpad HTTP API for programmatic integration and automation.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#api-endpoints">API Endpoints</a></li>
+<li><a href="#pad-management">Pad Management</a></li>
+<li><a href="#user--group-management">User &amp; Group Management</a></li>
+<li><a href="#session-management">Session Management</a></li>
+<li><a href="#pad-metadata">Pad Metadata</a></li>
+<li><a href="#complete-examples">Complete Examples</a></li>
+<li><a href="#error-handling">Error Handling</a></li>
+<li><a href="#integration-patterns">Integration Patterns</a></li>
+<li><a href="#references">References</a></li>
+</ol>
+<hr />
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The Etherpad HTTP API allows external applications to programmatically control and interact with Etherpad instances. This enables you to:</p>
+<ul>
+<li><strong>Automate pad management</strong> - Create, delete, and manage pads</li>
+<li><strong>Integrate with existing systems</strong> - Map your application users to Etherpad authors</li>
+<li><strong>Embed collaborative editing</strong> - Add real-time editing to your web applications</li>
+<li><strong>Export and sync content</strong> - Retrieve pad content for processing or backup</li>
+</ul>
+<h3 id="api-version">API Version<a class="headerlink" href="#api-version" title="Permanent link">&para;</a></h3>
+<p>Etherpad uses <strong>API version 1</strong> (also referred to as <code>1.2.13</code> in some contexts). All endpoints are accessed via:</p>
+<pre class="codehilite"><code class="language-text">http://your-etherpad-instance/api/1/methodName
+</code></pre>
+
+<h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content Management Systems</strong> - Automatically create pads for new documents</li>
+<li><strong>Learning Management Systems</strong> - Create collaborative spaces for students</li>
+<li><strong>Project Management Tools</strong> - Generate meeting notes and documentation pads</li>
+<li><strong>Custom Applications</strong> - Embed real-time editing with user authentication</li>
+</ul>
+<hr />
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>All API requests require an API key for authentication. The API key must be included in every request.</p>
+<h3 id="obtaining-your-api-key">Obtaining Your API Key<a class="headerlink" href="#obtaining-your-api-key" title="Permanent link">&para;</a></h3>
+<p>In a Docker-based Etherpad installation, the API key is stored in the container at <code>/opt/etherpad-lite/APIKEY.txt</code>.</p>
+<p><strong>Get the API key from the running container:</strong></p>
+<pre class="codehilite"><code class="language-bash"># Method 1: Using docker exec
+docker exec etherpad cat /opt/etherpad-lite/APIKEY.txt
+
+# Method 2: Copy the file to your host
+docker cp etherpad:/opt/etherpad-lite/APIKEY.txt ./APIKEY.txt
+cat ./APIKEY.txt
+</code></pre>
+
+<p><strong>Example output:</strong></p>
+<pre class="codehilite"><code class="language-text">a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0
+</code></pre>
+
+<h3 id="using-the-api-key">Using the API Key<a class="headerlink" href="#using-the-api-key" title="Permanent link">&para;</a></h3>
+<p>Include the API key as a query parameter named <code>apikey</code> in all requests:</p>
+<pre class="codehilite"><code class="language-text">http://your-etherpad-instance/api/1/methodName?apikey=YOUR_API_KEY&amp;param1=value1
+</code></pre>
+
+<h3 id="security-best-practices">Security Best Practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Never commit API keys</strong> to version control</li>
+<li><strong>Store API keys securely</strong> - Use environment variables or secret management</li>
+<li><strong>Restrict API key access</strong> - Only share with authorized developers</li>
+<li><strong>Use HTTPS</strong> in production to encrypt API requests</li>
+<li><strong>Rotate API keys</strong> periodically if compromised</li>
+</ol>
+<hr />
+<h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="pad-management">Pad Management<a class="headerlink" href="#pad-management" title="Permanent link">&para;</a></h3>
+<h4 id="create-pad">Create Pad<a class="headerlink" href="#create-pad" title="Permanent link">&para;</a></h4>
+<p>Creates a new pad with optional initial text.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/createPad</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Unique identifier for the pad</li>
+<li><code>text</code> (optional) - Initial text content</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createPad?apikey=YOUR_API_KEY&amp;padID=myPad&amp;text=Hello%20World&quot;
+</code></pre>
+
+<p><strong>Example Request (Python):</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+
+url = &quot;http://localhost:11155/api/1/createPad&quot;
+params = {
+    &quot;apikey&quot;: &quot;YOUR_API_KEY&quot;,
+    &quot;padID&quot;: &quot;myPad&quot;,
+    &quot;text&quot;: &quot;Hello World&quot;
+}
+response = requests.get(url, params=params)
+print(response.json())
+</code></pre>
+
+<p><strong>Example Request (JavaScript/Node.js):</strong></p>
+<pre class="codehilite"><code class="language-javascript">const fetch = require(&quot;node-fetch&quot;);
+
+const url = new URL(&quot;http://localhost:11155/api/1/createPad&quot;);
+url.searchParams.append(&quot;apikey&quot;, &quot;YOUR_API_KEY&quot;);
+url.searchParams.append(&quot;padID&quot;, &quot;myPad&quot;);
+url.searchParams.append(&quot;text&quot;, &quot;Hello World&quot;);
+
+fetch(url)
+  .then((res) =&gt; res.json())
+  .then((data) =&gt; console.log(data));
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<p><strong>Error Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 1,
+  &quot;message&quot;: &quot;padID does already exist&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h4 id="delete-pad">Delete Pad<a class="headerlink" href="#delete-pad" title="Permanent link">&para;</a></h4>
+<p>Deletes an existing pad permanently.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/deletePad</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier to delete</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/deletePad?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h4 id="list-all-pads">List All Pads<a class="headerlink" href="#list-all-pads" title="Permanent link">&para;</a></h4>
+<p>Retrieves a list of all pad IDs.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/listAllPads</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/listAllPads?apikey=YOUR_API_KEY&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;padIDs&quot;: [&quot;pad1&quot;, &quot;pad2&quot;, &quot;myPad&quot;]
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="get-pad-text">Get Pad Text<a class="headerlink" href="#get-pad-text" title="Permanent link">&para;</a></h4>
+<p>Retrieves the plain text content of a pad.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getText</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getText?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;text&quot;: &quot;Hello World\n\nThis is the pad content.&quot;
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="set-pad-text">Set Pad Text<a class="headerlink" href="#set-pad-text" title="Permanent link">&para;</a></h4>
+<p>Sets or replaces the entire text content of a pad.</p>
+<p><strong>Endpoint:</strong> <code>POST /api/1/setText</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+<li><code>text</code> (required) - New text content</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl -X POST &quot;http://localhost:11155/api/1/setText&quot; \
+  -d &quot;apikey=YOUR_API_KEY&quot; \
+  -d &quot;padID=myPad&quot; \
+  -d &quot;text=Updated content&quot;
+</code></pre>
+
+<p><strong>Example Request (Python):</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+
+url = &quot;http://localhost:11155/api/1/setText&quot;
+data = {
+    &quot;apikey&quot;: &quot;YOUR_API_KEY&quot;,
+    &quot;padID&quot;: &quot;myPad&quot;,
+    &quot;text&quot;: &quot;Updated content&quot;
+}
+response = requests.post(url, data=data)
+print(response.json())
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h4 id="append-text-to-pad">Append Text to Pad<a class="headerlink" href="#append-text-to-pad" title="Permanent link">&para;</a></h4>
+<p>Appends text to the end of a pad.</p>
+<p><strong>Endpoint:</strong> <code>POST /api/1/appendText</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+<li><code>text</code> (required) - Text to append</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl -X POST &quot;http://localhost:11155/api/1/appendText&quot; \
+  -d &quot;apikey=YOUR_API_KEY&quot; \
+  -d &quot;padID=myPad&quot; \
+  -d &quot;text=%0A%0AAdditional content&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h4 id="get-pad-html">Get Pad HTML<a class="headerlink" href="#get-pad-html" title="Permanent link">&para;</a></h4>
+<p>Retrieves the pad content as HTML.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getHTML</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+<li><code>rev</code> (optional) - Revision number</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getHTML?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;html&quot;: &quot;&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="set-pad-html">Set Pad HTML<a class="headerlink" href="#set-pad-html" title="Permanent link">&para;</a></h4>
+<p>Sets pad content from HTML.</p>
+<p><strong>Endpoint:</strong> <code>POST /api/1/setHTML</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+<li><code>html</code> (required) - HTML content</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl -X POST &quot;http://localhost:11155/api/1/setHTML&quot; \
+  -d &quot;apikey=YOUR_API_KEY&quot; \
+  -d &quot;padID=myPad&quot; \
+  -d &quot;html=%3Chtml%3E%3Cbody%3E%3Cp%3EContent%3C%2Fp%3E%3C%2Fbody%3E%3C%2Fhtml%3E&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h3 id="user-group-management">User &amp; Group Management<a class="headerlink" href="#user-group-management" title="Permanent link">&para;</a></h3>
+<h4 id="create-author">Create Author<a class="headerlink" href="#create-author" title="Permanent link">&para;</a></h4>
+<p>Creates a new author or returns existing author ID.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/createAuthorIfNotExistsFor</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>name</code> (optional) - Author display name</li>
+<li><code>authorMapper</code> (optional) - Your application's user ID (for mapping)</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createAuthorIfNotExistsFor?apikey=YOUR_API_KEY&amp;name=John%20Doe&amp;authorMapper=user123&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;authorID&quot;: &quot;a.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="create-group">Create Group<a class="headerlink" href="#create-group" title="Permanent link">&para;</a></h4>
+<p>Creates a new group or returns existing group ID.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/createGroupIfNotExistsFor</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>groupMapper</code> (optional) - Your application's group/user ID (for mapping)</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createGroupIfNotExistsFor?apikey=YOUR_API_KEY&amp;groupMapper=user123&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;groupID&quot;: &quot;g.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="create-group-pad">Create Group Pad<a class="headerlink" href="#create-group-pad" title="Permanent link">&para;</a></h4>
+<p>Creates a pad within a specific group.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/createGroupPad</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>groupID</code> (required) - Group identifier</li>
+<li><code>padName</code> (required) - Name for the pad</li>
+<li><code>text</code> (optional) - Initial text content</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createGroupPad?apikey=YOUR_API_KEY&amp;groupID=g.s8oes9dhwrvt0zif&amp;padName=myPad&amp;text=Initial%20content&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<p><strong>Note:</strong> The full pad ID will be <code>{groupID}${padName}</code> (e.g., <code>g.s8oes9dhwrvt0zif$myPad</code>)</p>
+<hr />
+<h4 id="list-groups">List Groups<a class="headerlink" href="#list-groups" title="Permanent link">&para;</a></h4>
+<p>Lists all groups.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/listGroups</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/listGroups?apikey=YOUR_API_KEY&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;groupIDs&quot;: [&quot;g.s8oes9dhwrvt0zif&quot;, &quot;g.anothergroup&quot;]
+  }
+}
+</code></pre>
+
+<hr />
+<h3 id="session-management">Session Management<a class="headerlink" href="#session-management" title="Permanent link">&para;</a></h3>
+<h4 id="create-session">Create Session<a class="headerlink" href="#create-session" title="Permanent link">&para;</a></h4>
+<p>Creates a session for a user to access pads in a group.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/createSession</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>groupID</code> (required) - Group identifier</li>
+<li><code>authorID</code> (required) - Author identifier</li>
+<li><code>validUntil</code> (optional) - Unix timestamp when session expires</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash"># Session valid for 24 hours
+VALID_UNTIL=$(($(date +%s) + 86400))
+curl &quot;http://localhost:11155/api/1/createSession?apikey=YOUR_API_KEY&amp;groupID=g.s8oes9dhwrvt0zif&amp;authorID=a.s8oes9dhwrvt0zif&amp;validUntil=$VALID_UNTIL&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;sessionID&quot;: &quot;s.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<p><strong>Usage:</strong> Set the <code>sessionID</code> as a cookie named <code>sessionID</code> on your client to grant access.</p>
+<hr />
+<h4 id="delete-session">Delete Session<a class="headerlink" href="#delete-session" title="Permanent link">&para;</a></h4>
+<p>Deletes a session.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/deleteSession</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>sessionID</code> (required) - Session identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/deleteSession?apikey=YOUR_API_KEY&amp;sessionID=s.s8oes9dhwrvt0zif&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<hr />
+<h4 id="get-session-info">Get Session Info<a class="headerlink" href="#get-session-info" title="Permanent link">&para;</a></h4>
+<p>Retrieves information about a session.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getSessionInfo</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>sessionID</code> (required) - Session identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getSessionInfo?apikey=YOUR_API_KEY&amp;sessionID=s.s8oes9dhwrvt0zif&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;authorID&quot;: &quot;a.s8oes9dhwrvt0zif&quot;,
+    &quot;groupID&quot;: &quot;g.s8oes9dhwrvt0zif&quot;,
+    &quot;validUntil&quot;: 1312201246
+  }
+}
+</code></pre>
+
+<hr />
+<h3 id="pad-metadata">Pad Metadata<a class="headerlink" href="#pad-metadata" title="Permanent link">&para;</a></h3>
+<h4 id="get-revisions-count">Get Revisions Count<a class="headerlink" href="#get-revisions-count" title="Permanent link">&para;</a></h4>
+<p>Returns the number of revisions for a pad.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getRevisionsCount</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getRevisionsCount?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;revisions&quot;: 5
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="get-last-edited">Get Last Edited<a class="headerlink" href="#get-last-edited" title="Permanent link">&para;</a></h4>
+<p>Returns the timestamp of the last edit.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getLastEdited</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getLastEdited?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;lastEdited&quot;: 1312201246000
+  }
+}
+</code></pre>
+
+<p><strong>Note:</strong> Timestamp is in milliseconds since Unix epoch.</p>
+<hr />
+<h4 id="list-authors-of-pad">List Authors of Pad<a class="headerlink" href="#list-authors-of-pad" title="Permanent link">&para;</a></h4>
+<p>Returns a list of author IDs who have edited the pad.</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/listAuthorsOfPad</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/listAuthorsOfPad?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;authorIDs&quot;: [&quot;a.s8oes9dhwrvt0zif&quot;, &quot;a.anotherauthor&quot;]
+  }
+}
+</code></pre>
+
+<hr />
+<h4 id="get-read-only-id">Get Read-Only ID<a class="headerlink" href="#get-read-only-id" title="Permanent link">&para;</a></h4>
+<p>Returns the read-only ID for a pad (for sharing read-only access).</p>
+<p><strong>Endpoint:</strong> <code>GET /api/1/getReadOnlyID</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>apikey</code> (required) - Your API key</li>
+<li><code>padID</code> (required) - Pad identifier</li>
+</ul>
+<p><strong>Example Request (cURL):</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getReadOnlyID?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;readOnlyID&quot;: &quot;r.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<p><strong>Usage:</strong> Access the pad read-only via: <code>http://your-etherpad-instance/p/r.s8oes9dhwrvt0zif</code></p>
+<hr />
+<h2 id="complete-examples">Complete Examples<a class="headerlink" href="#complete-examples" title="Permanent link">&para;</a></h2>
+<h3 id="example-1-creating-a-pad-for-a-user">Example 1: Creating a Pad for a User<a class="headerlink" href="#example-1-creating-a-pad-for-a-user" title="Permanent link">&para;</a></h3>
+<p>This example demonstrates the complete workflow of creating a pad for a specific user in your application.</p>
+<p><strong>Scenario:</strong> A web portal wants to grant user ID <code>7</code> (named "Michael") access to a new pad.</p>
+<h4 id="step-1-create-or-get-author">Step 1: Create or Get Author<a class="headerlink" href="#step-1-create-or-get-author" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createAuthorIfNotExistsFor?apikey=YOUR_API_KEY&amp;name=Michael&amp;authorMapper=7&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;authorID&quot;: &quot;a.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<h4 id="step-2-create-or-get-group">Step 2: Create or Get Group<a class="headerlink" href="#step-2-create-or-get-group" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createGroupIfNotExistsFor?apikey=YOUR_API_KEY&amp;groupMapper=7&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;groupID&quot;: &quot;g.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<h4 id="step-3-create-pad-in-group">Step 3: Create Pad in Group<a class="headerlink" href="#step-3-create-pad-in-group" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/createGroupPad?apikey=YOUR_API_KEY&amp;groupID=g.s8oes9dhwrvt0zif&amp;padName=samplePad&amp;text=Welcome%20to%20your%20pad&quot;
+</code></pre>
+
+<h4 id="step-4-create-session">Step 4: Create Session<a class="headerlink" href="#step-4-create-session" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-bash">VALID_UNTIL=$(($(date +%s) + 86400))  # 24 hours
+curl &quot;http://localhost:11155/api/1/createSession?apikey=YOUR_API_KEY&amp;groupID=g.s8oes9dhwrvt0zif&amp;authorID=a.s8oes9dhwrvt0zif&amp;validUntil=$VALID_UNTIL&quot;
+</code></pre>
+
+<p><strong>Response:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: {
+    &quot;sessionID&quot;: &quot;s.s8oes9dhwrvt0zif&quot;
+  }
+}
+</code></pre>
+
+<h4 id="step-5-set-session-cookie-and-embed-pad">Step 5: Set Session Cookie and Embed Pad<a class="headerlink" href="#step-5-set-session-cookie-and-embed-pad" title="Permanent link">&para;</a></h4>
+<p>In your web application, set the session cookie and embed the pad:</p>
+<pre class="codehilite"><code class="language-html">&lt;!-- Set cookie via JavaScript --&gt;
+&lt;script&gt;
+  document.cookie = &quot;sessionID=s.s8oes9dhwrvt0zif; path=/&quot;;
+&lt;/script&gt;
+
+&lt;!-- Embed pad --&gt;
+&lt;iframe
+  src=&quot;http://localhost:11155/p/g.s8oes9dhwrvt0zif$samplePad&quot;
+  width=&quot;100%&quot;
+  height=&quot;600px&quot;
+&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<p><strong>Python Complete Example:</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+from datetime import datetime, timedelta
+
+API_KEY = &quot;YOUR_API_KEY&quot;
+BASE_URL = &quot;http://localhost:11155/api/1&quot;
+USER_ID = &quot;7&quot;
+USER_NAME = &quot;Michael&quot;
+
+# Step 1: Create author
+response = requests.get(f&quot;{BASE_URL}/createAuthorIfNotExistsFor&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;name&quot;: USER_NAME,
+    &quot;authorMapper&quot;: USER_ID
+})
+author_id = response.json()[&quot;data&quot;][&quot;authorID&quot;]
+
+# Step 2: Create group
+response = requests.get(f&quot;{BASE_URL}/createGroupIfNotExistsFor&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;groupMapper&quot;: USER_ID
+})
+group_id = response.json()[&quot;data&quot;][&quot;groupID&quot;]
+
+# Step 3: Create pad
+response = requests.get(f&quot;{BASE_URL}/createGroupPad&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;groupID&quot;: group_id,
+    &quot;padName&quot;: &quot;samplePad&quot;,
+    &quot;text&quot;: &quot;Welcome to your pad&quot;
+})
+
+# Step 4: Create session (valid for 24 hours)
+valid_until = int((datetime.now() + timedelta(days=1)).timestamp())
+response = requests.get(f&quot;{BASE_URL}/createSession&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;groupID&quot;: group_id,
+    &quot;authorID&quot;: author_id,
+    &quot;validUntil&quot;: valid_until
+})
+session_id = response.json()[&quot;data&quot;][&quot;sessionID&quot;]
+
+print(f&quot;Session ID: {session_id}&quot;)
+print(f&quot;Pad URL: http://localhost:11155/p/{group_id}$samplePad&quot;)
+</code></pre>
+
+<hr />
+<h3 id="example-2-embedding-pads-in-web-applications">Example 2: Embedding Pads in Web Applications<a class="headerlink" href="#example-2-embedding-pads-in-web-applications" title="Permanent link">&para;</a></h3>
+<p>Etherpad pads can be embedded in web applications using iframes with various customization options.</p>
+<p><strong>Basic Embedding:</strong></p>
+<pre class="codehilite"><code class="language-html">&lt;iframe
+  src=&quot;http://localhost:11155/p/myPad&quot;
+  width=&quot;100%&quot;
+  height=&quot;600px&quot;
+  frameborder=&quot;0&quot;
+&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<p><strong>With Customization Parameters:</strong></p>
+<pre class="codehilite"><code class="language-html">&lt;iframe
+  src=&quot;http://localhost:11155/p/myPad#L4?showChat=false&amp;showLineNumbers=false&amp;userName=John&quot;
+  width=&quot;100%&quot;
+  height=&quot;600px&quot;
+  frameborder=&quot;0&quot;
+&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<p><strong>Available Embed Parameters:</strong></p>
+<ul>
+<li><code>showChat</code> - Show/hide chat panel (true/false)</li>
+<li><code>showLineNumbers</code> - Show/hide line numbers (true/false)</li>
+<li><code>userName</code> - Set user display name</li>
+<li><code>userColor</code> - Set user color (hex code)</li>
+<li><code>alwaysShowChat</code> - Always show chat (true/false)</li>
+<li><code>lang</code> - Set language code (e.g., "en", "de", "fr")</li>
+</ul>
+<p><strong>Example with All Options:</strong></p>
+<pre class="codehilite"><code class="language-html">&lt;iframe
+  src=&quot;http://localhost:11155/p/myPad?showChat=false&amp;showLineNumbers=true&amp;userName=John%20Doe&amp;userColor=%23FF0000&amp;lang=en&quot;
+  width=&quot;100%&quot;
+  height=&quot;600px&quot;
+  frameborder=&quot;0&quot;
+&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<hr />
+<h3 id="example-3-exporting-pad-content-programmatically">Example 3: Exporting Pad Content Programmatically<a class="headerlink" href="#example-3-exporting-pad-content-programmatically" title="Permanent link">&para;</a></h3>
+<p>Retrieve pad content and process it for export or backup.</p>
+<p><strong>Python Export Script:</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+from datetime import datetime
+
+API_KEY = &quot;YOUR_API_KEY&quot;
+BASE_URL = &quot;http://localhost:11155/api/1&quot;
+PAD_ID = &quot;myPad&quot;
+
+# Get pad text
+response = requests.get(f&quot;{BASE_URL}/getText&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;padID&quot;: PAD_ID
+})
+text_content = response.json()[&quot;data&quot;][&quot;text&quot;]
+
+# Get pad HTML
+response = requests.get(f&quot;{BASE_URL}/getHTML&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;padID&quot;: PAD_ID
+})
+html_content = response.json()[&quot;data&quot;][&quot;html&quot;]
+
+# Get metadata
+response = requests.get(f&quot;{BASE_URL}/getLastEdited&quot;, params={
+    &quot;apikey&quot;: API_KEY,
+    &quot;padID&quot;: PAD_ID
+})
+last_edited = response.json()[&quot;data&quot;][&quot;lastEdited&quot;]
+
+# Save to files
+timestamp = datetime.fromtimestamp(last_edited / 1000).strftime(&quot;%Y%m%d_%H%M%S&quot;)
+
+with open(f&quot;export_{PAD_ID}_{timestamp}.txt&quot;, &quot;w&quot;) as f:
+    f.write(text_content)
+
+with open(f&quot;export_{PAD_ID}_{timestamp}.html&quot;, &quot;w&quot;) as f:
+    f.write(html_content)
+
+print(f&quot;Exported pad {PAD_ID} at {timestamp}&quot;)
+</code></pre>
+
+<hr />
+<h3 id="example-4-managing-user-access-with-groups-and-sessions">Example 4: Managing User Access with Groups and Sessions<a class="headerlink" href="#example-4-managing-user-access-with-groups-and-sessions" title="Permanent link">&para;</a></h3>
+<p>Complete workflow for managing user access to multiple pads.</p>
+<p><strong>Python Access Management:</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+from datetime import datetime, timedelta
+
+API_KEY = &quot;YOUR_API_KEY&quot;
+BASE_URL = &quot;http://localhost:11155/api/1&quot;
+
+class EtherpadManager:
+    def __init__(self, api_key, base_url):
+        self.api_key = api_key
+        self.base_url = base_url
+
+    def get_or_create_author(self, user_id, user_name):
+        &quot;&quot;&quot;Get or create author for user&quot;&quot;&quot;
+        response = requests.get(f&quot;{self.base_url}/createAuthorIfNotExistsFor&quot;, params={
+            &quot;apikey&quot;: self.api_key,
+            &quot;name&quot;: user_name,
+            &quot;authorMapper&quot;: user_id
+        })
+        return response.json()[&quot;data&quot;][&quot;authorID&quot;]
+
+    def get_or_create_group(self, user_id):
+        &quot;&quot;&quot;Get or create group for user&quot;&quot;&quot;
+        response = requests.get(f&quot;{self.base_url}/createGroupIfNotExistsFor&quot;, params={
+            &quot;apikey&quot;: self.api_key,
+            &quot;groupMapper&quot;: user_id
+        })
+        return response.json()[&quot;data&quot;][&quot;groupID&quot;]
+
+    def create_pad_for_user(self, user_id, pad_name, initial_text=&quot;&quot;):
+        &quot;&quot;&quot;Create a pad for a specific user&quot;&quot;&quot;
+        group_id = self.get_or_create_group(user_id)
+        response = requests.get(f&quot;{self.base_url}/createGroupPad&quot;, params={
+            &quot;apikey&quot;: self.api_key,
+            &quot;groupID&quot;: group_id,
+            &quot;padName&quot;: pad_name,
+            &quot;text&quot;: initial_text
+        })
+        return f&quot;{group_id}${pad_name}&quot;
+
+    def create_session(self, user_id, user_name, duration_hours=24):
+        &quot;&quot;&quot;Create a session for user access&quot;&quot;&quot;
+        author_id = self.get_or_create_author(user_id, user_name)
+        group_id = self.get_or_create_group(user_id)
+
+        valid_until = int((datetime.now() + timedelta(hours=duration_hours)).timestamp())
+        response = requests.get(f&quot;{self.base_url}/createSession&quot;, params={
+            &quot;apikey&quot;: self.api_key,
+            &quot;groupID&quot;: group_id,
+            &quot;authorID&quot;: author_id,
+            &quot;validUntil&quot;: valid_until
+        })
+        return response.json()[&quot;data&quot;][&quot;sessionID&quot;]
+
+    def list_user_pads(self, user_id):
+        &quot;&quot;&quot;List all pads for a user&quot;&quot;&quot;
+        group_id = self.get_or_create_group(user_id)
+        # Note: There's no direct API to list pads in a group
+        # You would need to track this in your application
+        pass
+
+# Usage
+manager = EtherpadManager(API_KEY, BASE_URL)
+
+# Create pad for user
+pad_id = manager.create_pad_for_user(&quot;user123&quot;, &quot;meeting-notes&quot;, &quot;Meeting notes for today&quot;)
+
+# Create session
+session_id = manager.create_session(&quot;user123&quot;, &quot;John Doe&quot;, duration_hours=48)
+
+print(f&quot;Pad ID: {pad_id}&quot;)
+print(f&quot;Session ID: {session_id}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h3>
+<p>All API responses follow this format:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 0,
+  &quot;message&quot;: &quot;ok&quot;,
+  &quot;data&quot;: { ... }
+}
+</code></pre>
+
+<h3 id="error-codes">Error Codes<a class="headerlink" href="#error-codes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>0</strong> - Success</li>
+<li><strong>1</strong> - Invalid parameters or operation failed</li>
+<li><strong>2</strong> - Internal error</li>
+<li><strong>3</strong> - No such function</li>
+<li><strong>4</strong> - Invalid API key</li>
+</ul>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<p><strong>Invalid API Key:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 4,
+  &quot;message&quot;: &quot;no or wrong API Key&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<p><strong>Pad Already Exists:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 1,
+  &quot;message&quot;: &quot;padID does already exist&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<p><strong>Pad Not Found:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 1,
+  &quot;message&quot;: &quot;padID does not exist&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<p><strong>Invalid Parameters:</strong></p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;code&quot;: 1,
+  &quot;message&quot;: &quot;required parameter missing&quot;,
+  &quot;data&quot;: null
+}
+</code></pre>
+
+<h3 id="error-handling-example">Error Handling Example<a class="headerlink" href="#error-handling-example" title="Permanent link">&para;</a></h3>
+<p><strong>Python with Error Handling:</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+
+def create_pad_safe(api_key, pad_id, text=&quot;&quot;):
+    &quot;&quot;&quot;Create pad with proper error handling&quot;&quot;&quot;
+    url = &quot;http://localhost:11155/api/1/createPad&quot;
+    params = {
+        &quot;apikey&quot;: api_key,
+        &quot;padID&quot;: pad_id,
+        &quot;text&quot;: text
+    }
+
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        result = response.json()
+
+        if result[&quot;code&quot;] == 0:
+            return {&quot;success&quot;: True, &quot;data&quot;: result[&quot;data&quot;]}
+        else:
+            return {
+                &quot;success&quot;: False,
+                &quot;error_code&quot;: result[&quot;code&quot;],
+                &quot;error_message&quot;: result[&quot;message&quot;]
+            }
+    except requests.exceptions.RequestException as e:
+        return {
+            &quot;success&quot;: False,
+            &quot;error&quot;: &quot;Network error&quot;,
+            &quot;details&quot;: str(e)
+        }
+
+# Usage
+result = create_pad_safe(&quot;YOUR_API_KEY&quot;, &quot;myPad&quot;, &quot;Hello&quot;)
+if result[&quot;success&quot;]:
+    print(&quot;Pad created successfully&quot;)
+else:
+    print(f&quot;Error: {result.get('error_message', result.get('error'))}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="integration-patterns">Integration Patterns<a class="headerlink" href="#integration-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="rest-client-examples">REST Client Examples<a class="headerlink" href="#rest-client-examples" title="Permanent link">&para;</a></h3>
+<h4 id="curl">cURL<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h4>
+<p><strong>Basic GET Request:</strong></p>
+<pre class="codehilite"><code class="language-bash">curl &quot;http://localhost:11155/api/1/getText?apikey=YOUR_API_KEY&amp;padID=myPad&quot;
+</code></pre>
+
+<p><strong>POST Request:</strong></p>
+<pre class="codehilite"><code class="language-bash">curl -X POST &quot;http://localhost:11155/api/1/setText&quot; \
+  -d &quot;apikey=YOUR_API_KEY&quot; \
+  -d &quot;padID=myPad&quot; \
+  -d &quot;text=New content&quot;
+</code></pre>
+
+<p><strong>With Headers:</strong></p>
+<pre class="codehilite"><code class="language-bash">curl -X POST &quot;http://localhost:11155/api/1/setText&quot; \
+  -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
+  -d &quot;apikey=YOUR_API_KEY&quot; \
+  -d &quot;padID=myPad&quot; \
+  -d &quot;text=New content&quot;
+</code></pre>
+
+<h4 id="python-with-requests">Python with requests<a class="headerlink" href="#python-with-requests" title="Permanent link">&para;</a></h4>
+<p><strong>Simple Client Class:</strong></p>
+<pre class="codehilite"><code class="language-python">import requests
+from typing import Optional, Dict, Any
+
+class EtherpadClient:
+    def __init__(self, base_url: str, api_key: str):
+        self.base_url = base_url.rstrip('/')
+        self.api_key = api_key
+        self.api_path = f&quot;{self.base_url}/api/1&quot;
+
+    def _request(self, method: str, endpoint: str, params: Optional[Dict] = None, data: Optional[Dict] = None) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Make API request&quot;&quot;&quot;
+        url = f&quot;{self.api_path}/{endpoint}&quot;
+        params = params or {}
+        params[&quot;apikey&quot;] = self.api_key
+
+        if method.upper() == &quot;GET&quot;:
+            response = requests.get(url, params=params)
+        else:
+            response = requests.post(url, params=params, data=data)
+
+        response.raise_for_status()
+        return response.json()
+
+    def create_pad(self, pad_id: str, text: str = &quot;&quot;) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Create a new pad&quot;&quot;&quot;
+        return self._request(&quot;GET&quot;, &quot;createPad&quot;, params={
+            &quot;padID&quot;: pad_id,
+            &quot;text&quot;: text
+        })
+
+    def get_text(self, pad_id: str) -&gt; str:
+        &quot;&quot;&quot;Get pad text content&quot;&quot;&quot;
+        result = self._request(&quot;GET&quot;, &quot;getText&quot;, params={&quot;padID&quot;: pad_id})
+        return result[&quot;data&quot;][&quot;text&quot;]
+
+    def set_text(self, pad_id: str, text: str) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Set pad text content&quot;&quot;&quot;
+        return self._request(&quot;POST&quot;, &quot;setText&quot;, data={
+            &quot;padID&quot;: pad_id,
+            &quot;text&quot;: text
+        })
+
+    def delete_pad(self, pad_id: str) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Delete a pad&quot;&quot;&quot;
+        return self._request(&quot;GET&quot;, &quot;deletePad&quot;, params={&quot;padID&quot;: pad_id})
+
+# Usage
+client = EtherpadClient(&quot;http://localhost:11155&quot;, &quot;YOUR_API_KEY&quot;)
+client.create_pad(&quot;myPad&quot;, &quot;Hello World&quot;)
+content = client.get_text(&quot;myPad&quot;)
+print(content)
+</code></pre>
+
+<h4 id="javascriptnodejs">JavaScript/Node.js<a class="headerlink" href="#javascriptnodejs" title="Permanent link">&para;</a></h4>
+<p><strong>Simple Client:</strong></p>
+<pre class="codehilite"><code class="language-javascript">const fetch = require(&quot;node-fetch&quot;);
+
+class EtherpadClient {
+  constructor(baseUrl, apiKey) {
+    this.baseUrl = baseUrl.replace(/\/$/, &quot;&quot;);
+    this.apiKey = apiKey;
+    this.apiPath = `${this.baseUrl}/api/1`;
+  }
+
+  async request(method, endpoint, params = {}, data = null) {
+    const url = new URL(`${this.apiPath}/${endpoint}`);
+    url.searchParams.append(&quot;apikey&quot;, this.apiKey);
+
+    Object.entries(params).forEach(([key, value]) =&gt; {
+      url.searchParams.append(key, value);
+    });
+
+    const options = {
+      method: method.toUpperCase(),
+      headers: {},
+    };
+
+    if (data &amp;&amp; method.toUpperCase() === &quot;POST&quot;) {
+      options.headers[&quot;Content-Type&quot;] = &quot;application/x-www-form-urlencoded&quot;;
+      options.body = new URLSearchParams(data).toString();
+    }
+
+    const response = await fetch(url.toString(), options);
+    return await response.json();
+  }
+
+  async createPad(padId, text = &quot;&quot;) {
+    return this.request(&quot;GET&quot;, &quot;createPad&quot;, {
+      padID: padId,
+      text: text,
+    });
+  }
+
+  async getText(padId) {
+    const result = await this.request(&quot;GET&quot;, &quot;getText&quot;, { padID: padId });
+    return result.data.text;
+  }
+
+  async setText(padId, text) {
+    return this.request(
+      &quot;POST&quot;,
+      &quot;setText&quot;,
+      {},
+      {
+        padID: padId,
+        text: text,
+      },
+    );
+  }
+
+  async deletePad(padId) {
+    return this.request(&quot;GET&quot;, &quot;deletePad&quot;, { padID: padId });
+  }
+}
+
+// Usage
+const client = new EtherpadClient(&quot;http://localhost:11155&quot;, &quot;YOUR_API_KEY&quot;);
+client
+  .createPad(&quot;myPad&quot;, &quot;Hello World&quot;)
+  .then((result) =&gt; console.log(result))
+  .catch((err) =&gt; console.error(err));
+</code></pre>
+
+<h3 id="sso-integration-considerations">SSO Integration Considerations<a class="headerlink" href="#sso-integration-considerations" title="Permanent link">&para;</a></h3>
+<p>If your Etherpad instance uses SSO (Single Sign-On) authentication, you'll need to:</p>
+<ol>
+<li><strong>Configure SSO clients</strong> in <code>config/etherpad.settings.json</code></li>
+<li><strong>Use OAuth tokens</strong> instead of API keys for authenticated requests</li>
+<li><strong>Set Authorization header</strong> instead of query parameter:</li>
+</ol>
+<pre class="codehilite"><code class="language-bash">curl -H &quot;Authorization: Bearer YOUR_OAUTH_TOKEN&quot; \
+  &quot;http://localhost:11155/api/1/getText?padID=myPad&quot;
+</code></pre>
+
+<p>For more details on SSO configuration, see the <a href="../admin-guide/">Admin Guide</a>.</p>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h3 id="official-documentation">Official Documentation<a class="headerlink" href="#official-documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Etherpad API Documentation</strong>: <a href="https://docs.etherpad.org/api/">https://docs.etherpad.org/api/</a></li>
+<li><strong>HTTP API Reference</strong>: <a href="https://docs.etherpad.org/api/http_api.html">https://docs.etherpad.org/api/http_api.html</a></li>
+<li><strong>Embed Parameters</strong>: <a href="https://docs.etherpad.org/api/embed_parameters.html">https://docs.etherpad.org/api/embed_parameters.html</a></li>
+<li><strong>Etherpad Docker Documentation</strong>: <a href="https://docs.etherpad.org/docker.html">https://docs.etherpad.org/docker.html</a></li>
+</ul>
+<h3 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Etherpad GitHub Repository</strong>: <a href="https://github.com/ether/etherpad-lite">https://github.com/ether/etherpad-lite</a></li>
+<li><strong>Etherpad Community</strong>: <a href="https://etherpad.org/">https://etherpad.org/</a></li>
+<li><strong>Etherpad Plugins</strong>: <a href="https://static.etherpad.org/">https://static.etherpad.org/</a></li>
+</ul>
+<h3 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../admin-guide/">Admin Guide</a> - Configuration and administration</li>
+<li><a href="../user-guide/">User Guide</a> - End-user documentation</li>
+<li><a href="../getting-started/">Getting Started</a> - Quick start guide</li>
+</ul>
+<hr />
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<h3 id="common-endpoints">Common Endpoints<a class="headerlink" href="#common-endpoints" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/1/createPad</code></td>
+<td>Create new pad</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/deletePad</code></td>
+<td>Delete pad</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/getText</code></td>
+<td>Get pad text</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/1/setText</code></td>
+<td>Set pad text</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/getHTML</code></td>
+<td>Get pad HTML</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/createAuthorIfNotExistsFor</code></td>
+<td>Create/get author</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/createGroupIfNotExistsFor</code></td>
+<td>Create/get group</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/1/createSession</code></td>
+<td>Create user session</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-codes">Response Codes<a class="headerlink" href="#response-codes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>0</code> - Success</li>
+<li><code>1</code> - Invalid parameters</li>
+<li><code>2</code> - Internal error</li>
+<li><code>3</code> - No such function</li>
+<li><code>4</code> - Invalid API key</li>
+</ul>
+<hr />
+<p><strong>Last Updated:</strong> 2026-01-07<br />
+<strong>API Version:</strong> 1.2.13</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../admin-guide/" class="btn btn-neutral float-left" title="Admin Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../troubleshooting/" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2026 Etherpad Plus Team</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/your-username/docker-etherpad" class="fa fa-code-fork" style="color: #fcfcfc"> docker-etherpad</a>
+        </span>
+    
+    
+      <span><a href="../admin-guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

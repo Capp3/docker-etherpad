@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Etherpad Plus Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Export Guide - Etherpad Plus Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Export Guide";
+        var mkdocs_page_input_path = "export-guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Etherpad Plus Documentation
+        </a>
+        <div class="version">
+          1.0.0
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user-guide/">User Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../plugin-features/">Plugin Features</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Export Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#supported-formats">Supported Formats</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-export">How to Export</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-1-file-menu">Method 1: File Menu</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-2-toolbar-button">Method 2: Toolbar Button</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-3-keyboard-shortcut">Method 3: Keyboard Shortcut</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#export-formats-explained">Export Formats Explained</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#html-export">HTML Export</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#odt-export-opendocument">ODT Export (OpenDocument)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#docx-export-microsoft-word">DOCX Export (Microsoft Word)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#export-workflows">Export Workflows</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#workflow-1-quick-share-html">Workflow 1: Quick Share (HTML)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workflow-2-word-editing-odtdocx">Workflow 2: Word Editing (ODT/DOCX)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workflow-3-hybrid-approach">Workflow 3: Hybrid Approach</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-gets-exported">What Gets Exported</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#preserved-elements">Preserved Elements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#may-need-adjustment">May Need Adjustment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tips-and-best-practices">Tips and Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#before-exporting">Before Exporting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#format-selection">Format Selection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#after-exporting">After Exporting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#export-quality-tips">Export Quality Tips</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting-exports">Troubleshooting Exports</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#images-not-showing">Images Not Showing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatting-lost">Formatting Lost</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#large-file-size">Large File Size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cant-open-file">Can't Open File</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-export-via-api">Advanced: Export via API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#api-endpoints">API Endpoints</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-usage">Example Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#export-storage">Export Storage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#where-exports-are-stored">Where Exports Are Stored</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#backup-exports">Backup Exports</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#need-more-help">Need More Help?</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../admin-guide/">Admin Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-guide/">API Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Etherpad Plus Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Export Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/your-username/docker-etherpad/edit/master/docs/export-guide.md">Edit on docker-etherpad</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="export-guide-exporting-your-documents">Export Guide - Exporting Your Documents<a class="headerlink" href="#export-guide-exporting-your-documents" title="Permanent link">&para;</a></h1>
+<p>Etherpad Plus supports exporting documents to multiple formats for sharing and final editing.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#supported-formats">Supported Formats</a></li>
+<li><a href="#how-to-export">How to Export</a></li>
+<li><a href="#export-formats-explained">Export Formats Explained</a></li>
+<li><a href="#export-workflows">Export Workflows</a></li>
+<li><a href="#tips-and-best-practices">Tips and Best Practices</a></li>
+</ol>
+<hr />
+<h2 id="supported-formats">Supported Formats<a class="headerlink" href="#supported-formats" title="Permanent link">&para;</a></h2>
+<p>Etherpad Plus can export to:</p>
+<ul>
+<li><strong>HTML</strong> - Web format, opens in browsers</li>
+<li><strong>ODT</strong> - OpenDocument format, opens in LibreOffice/Word</li>
+<li><strong>DOCX</strong> - Microsoft Word format (via LibreOffice conversion)</li>
+</ul>
+<hr />
+<h2 id="how-to-export">How to Export<a class="headerlink" href="#how-to-export" title="Permanent link">&para;</a></h2>
+<h3 id="method-1-file-menu">Method 1: File Menu<a class="headerlink" href="#method-1-file-menu" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click <strong>File</strong> in the menu bar</li>
+<li>Select <strong>Export</strong></li>
+<li>Choose your format:</li>
+<li><strong>Export as HTML</strong></li>
+<li><strong>Export as ODT</strong></li>
+<li><strong>Export as DOCX</strong> (if available)</li>
+<li>File downloads automatically</li>
+</ol>
+<h3 id="method-2-toolbar-button">Method 2: Toolbar Button<a class="headerlink" href="#method-2-toolbar-button" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Look for <strong>Export</strong> button in toolbar</li>
+<li>Click to see format options</li>
+<li>Select desired format</li>
+<li>File downloads</li>
+</ol>
+<h3 id="method-3-keyboard-shortcut">Method 3: Keyboard Shortcut<a class="headerlink" href="#method-3-keyboard-shortcut" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Some formats may have keyboard shortcuts</li>
+<li>Check File menu for available shortcuts</li>
+</ul>
+<hr />
+<h2 id="export-formats-explained">Export Formats Explained<a class="headerlink" href="#export-formats-explained" title="Permanent link">&para;</a></h2>
+<h3 id="html-export">HTML Export<a class="headerlink" href="#html-export" title="Permanent link">&para;</a></h3>
+<p><strong>Best for:</strong>
+- Viewing in web browsers
+- Sharing online
+- Web publishing
+- Quick previews</p>
+<p><strong>Features:</strong>
+- Preserves formatting
+- Includes images
+- Headings preserved
+- Links work
+- Lightweight file size</p>
+<p><strong>Limitations:</strong>
+- Not ideal for Word editing
+- May need formatting adjustments
+- Browser-dependent rendering</p>
+<p><strong>Use When:</strong>
+- Sharing with web users
+- Quick document preview
+- Web publishing
+- Email attachments (lightweight)</p>
+<hr />
+<h3 id="odt-export-opendocument">ODT Export (OpenDocument)<a class="headerlink" href="#odt-export-opendocument" title="Permanent link">&para;</a></h3>
+<p><strong>Best for:</strong>
+- Opening in LibreOffice
+- Opening in Microsoft Word
+- Final document editing
+- Professional documents</p>
+<p><strong>Features:</strong>
+- Full formatting preserved
+- Images included
+- Headings and structure maintained
+- Editable in Word/LibreOffice
+- Standard format</p>
+<p><strong>Limitations:</strong>
+- Larger file size than HTML
+- May need minor formatting tweaks</p>
+<p><strong>Use When:</strong>
+- Final document editing
+- Sharing with Word users
+- Professional documents
+- Archiving documents</p>
+<hr />
+<h3 id="docx-export-microsoft-word">DOCX Export (Microsoft Word)<a class="headerlink" href="#docx-export-microsoft-word" title="Permanent link">&para;</a></h3>
+<p><strong>Best for:</strong>
+- Microsoft Word users
+- Final document editing
+- Professional documents
+- Corporate environments</p>
+<p><strong>Features:</strong>
+- Native Word format
+- Full formatting preserved
+- Images included
+- Editable in Word
+- Professional appearance</p>
+<p><strong>Limitations:</strong>
+- Requires LibreOffice conversion
+- May have minor formatting differences
+- Larger file size</p>
+<p><strong>Use When:</strong>
+- Sharing with Word users
+- Final document preparation
+- Corporate documents
+- When Word compatibility is required</p>
+<p><strong>Note:</strong> DOCX export uses LibreOffice for conversion. Ensure LibreOffice is properly configured on the server.</p>
+<hr />
+<h2 id="export-workflows">Export Workflows<a class="headerlink" href="#export-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="workflow-1-quick-share-html">Workflow 1: Quick Share (HTML)<a class="headerlink" href="#workflow-1-quick-share-html" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Write your document in Etherpad Plus</li>
+<li>Export as HTML</li>
+<li>Share HTML file via email/chat</li>
+<li>Recipients open in browser</li>
+<li>No editing needed</li>
+</ol>
+<p><strong>Best for:</strong> Quick sharing, read-only documents</p>
+<hr />
+<h3 id="workflow-2-word-editing-odtdocx">Workflow 2: Word Editing (ODT/DOCX)<a class="headerlink" href="#workflow-2-word-editing-odtdocx" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Write and collaborate in Etherpad Plus</li>
+<li>Export as ODT or DOCX</li>
+<li>Open in Microsoft Word or LibreOffice</li>
+<li>Final formatting and polish</li>
+<li>Save final document</li>
+</ol>
+<p><strong>Best for:</strong> Final document preparation, professional documents</p>
+<hr />
+<h3 id="workflow-3-hybrid-approach">Workflow 3: Hybrid Approach<a class="headerlink" href="#workflow-3-hybrid-approach" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Collaborate in Etherpad Plus</li>
+<li>Export as HTML for quick review</li>
+<li>Export as ODT/DOCX for final editing</li>
+<li>Use Word/LibreOffice for final polish</li>
+<li>Share final document</li>
+</ol>
+<p><strong>Best for:</strong> Multi-stage document creation</p>
+<hr />
+<h2 id="what-gets-exported">What Gets Exported<a class="headerlink" href="#what-gets-exported" title="Permanent link">&para;</a></h2>
+<h3 id="preserved-elements">Preserved Elements<a class="headerlink" href="#preserved-elements" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Text formatting</strong>
+- Bold, italic, underline
+- Font colors
+- Text alignment
+- Strikethrough</p>
+<p>✅ <strong>Document structure</strong>
+- Headings (H1, H2, H3)
+- Paragraphs
+- Line breaks
+- Lists (if supported)</p>
+<p>✅ <strong>Media</strong>
+- Images (embedded or linked)
+- Image positioning</p>
+<p>✅ <strong>Links</strong>
+- Hyperlinks
+- Link text preserved</p>
+<p>✅ <strong>Comments</strong>
+- May be included as notes (format-dependent)</p>
+<h3 id="may-need-adjustment">May Need Adjustment<a class="headerlink" href="#may-need-adjustment" title="Permanent link">&para;</a></h3>
+<p>⚠️ <strong>Complex formatting</strong>
+- Some advanced formatting may need tweaking
+- Font sizes may differ
+- Spacing may vary</p>
+<p>⚠️ <strong>Layout</strong>
+- Page breaks may differ
+- Margins may need adjustment
+- Column layouts may change</p>
+<hr />
+<h2 id="tips-and-best-practices">Tips and Best Practices<a class="headerlink" href="#tips-and-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="before-exporting">Before Exporting<a class="headerlink" href="#before-exporting" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Review your document</strong> - Check for errors</li>
+<li><strong>Test formatting</strong> - Ensure headings are correct</li>
+<li><strong>Check images</strong> - Verify images display correctly</li>
+<li><strong>Verify links</strong> - Test all hyperlinks</li>
+<li><strong>Clean up</strong> - Remove unnecessary content</li>
+</ol>
+<h3 id="format-selection">Format Selection<a class="headerlink" href="#format-selection" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>HTML</strong> - Quick sharing, web viewing</li>
+<li><strong>ODT</strong> - Word editing, professional documents</li>
+<li><strong>DOCX</strong> - Maximum Word compatibility</li>
+</ul>
+<h3 id="after-exporting">After Exporting<a class="headerlink" href="#after-exporting" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Open exported file</strong> - Verify formatting</li>
+<li><strong>Check images</strong> - Ensure images display</li>
+<li><strong>Test links</strong> - Verify hyperlinks work</li>
+<li><strong>Review structure</strong> - Check headings and organization</li>
+<li><strong>Make adjustments</strong> - Fine-tune in Word/LibreOffice if needed</li>
+</ol>
+<h3 id="export-quality-tips">Export Quality Tips<a class="headerlink" href="#export-quality-tips" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Use headings</strong> - Better structure in exports</li>
+<li><strong>Consistent formatting</strong> - Easier to preserve</li>
+<li><strong>Optimize images</strong> - Smaller file sizes</li>
+<li><strong>Test exports</strong> - Verify before sharing</li>
+<li><strong>Export regularly</strong> - Backup your work</li>
+</ol>
+<hr />
+<h2 id="troubleshooting-exports">Troubleshooting Exports<a class="headerlink" href="#troubleshooting-exports" title="Permanent link">&para;</a></h2>
+<h3 id="images-not-showing">Images Not Showing<a class="headerlink" href="#images-not-showing" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Images don't appear in exported file</p>
+<p><strong>Solutions:</strong>
+- Check image file size (max 5MB)
+- Verify image format (JPEG, PNG, GIF, BMP)
+- Re-upload image if needed
+- Check image permissions</p>
+<h3 id="formatting-lost">Formatting Lost<a class="headerlink" href="#formatting-lost" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Formatting doesn't match Etherpad view</p>
+<p><strong>Solutions:</strong>
+- Use standard formatting (avoid complex styles)
+- Check export format (try ODT instead of HTML)
+- Open in appropriate application
+- May need minor adjustments in Word/LibreOffice</p>
+<h3 id="large-file-size">Large File Size<a class="headerlink" href="#large-file-size" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Exported file is very large</p>
+<p><strong>Solutions:</strong>
+- Optimize images before uploading
+- Remove unnecessary images
+- Use HTML format for smaller files
+- Compress images in image editor</p>
+<h3 id="cant-open-file">Can't Open File<a class="headerlink" href="#cant-open-file" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Exported file won't open</p>
+<p><strong>Solutions:</strong>
+- Check file extension matches format
+- Try different application
+- Verify file downloaded completely
+- Re-export if corrupted</p>
+<hr />
+<h2 id="advanced-export-via-api">Advanced: Export via API<a class="headerlink" href="#advanced-export-via-api" title="Permanent link">&para;</a></h2>
+<p>For administrators, documents can be exported programmatically via the Etherpad API.</p>
+<h3 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/p/{padId}/export/html</code> - HTML export</li>
+<li><code>/p/{padId}/export/odt</code> - ODT export</li>
+<li><code>/p/{padId}/export/docx</code> - DOCX export</li>
+</ul>
+<h3 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-bash"># Export pad as HTML
+curl http://yourdomain/p/YourPadName/export/html &gt; document.html
+
+# Export pad as ODT
+curl http://yourdomain/p/YourPadName/export/odt &gt; document.odt
+</code></pre>
+
+<p><strong>Note:</strong> API access may require authentication. Contact your administrator.</p>
+<hr />
+<h2 id="export-storage">Export Storage<a class="headerlink" href="#export-storage" title="Permanent link">&para;</a></h2>
+<h3 id="where-exports-are-stored">Where Exports Are Stored<a class="headerlink" href="#where-exports-are-stored" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Server exports</strong>: Stored in <code>/data/exports</code> directory</li>
+<li><strong>Downloaded exports</strong>: Saved to your Downloads folder</li>
+<li><strong>Temporary files</strong>: May be cleaned up automatically</li>
+</ul>
+<h3 id="backup-exports">Backup Exports<a class="headerlink" href="#backup-exports" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Download important exports</strong> - Don't rely only on server storage</li>
+<li><strong>Keep local copies</strong> - Backup your exported documents</li>
+<li><strong>Version control</strong> - Export at key milestones</li>
+</ul>
+<hr />
+<h2 id="need-more-help">Need More Help?<a class="headerlink" href="#need-more-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li>See <a href="../user-guide/">User Guide</a> for general usage</li>
+<li>Check <a href="../troubleshooting/">Troubleshooting</a> for export issues</li>
+<li>Contact your administrator for technical support</li>
+</ul>
+<hr />
+<p><strong>Next:</strong> Learn about <a href="../admin-guide/">administration</a> →</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../plugin-features/" class="btn btn-neutral float-left" title="Plugin Features"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../admin-guide/" class="btn btn-neutral float-right" title="Admin Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2026 Etherpad Plus Team</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/your-username/docker-etherpad" class="fa fa-code-fork" style="color: #fcfcfc"> docker-etherpad</a>
+        </span>
+    
+    
+      <span><a href="../plugin-features/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../admin-guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

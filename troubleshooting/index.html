@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Etherpad Plus Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Troubleshooting - Etherpad Plus Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Troubleshooting";
+        var mkdocs_page_input_path = "troubleshooting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Etherpad Plus Documentation
+        </a>
+        <div class="version">
+          1.0.0
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user-guide/">User Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../plugin-features/">Plugin Features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../export-guide/">Export Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../admin-guide/">Admin Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-guide/">API Guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Troubleshooting</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-issues">Access Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cant-access-etherpad-plus">Can't Access Etherpad Plus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wrong-port-or-url">Wrong Port or URL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#editing-problems">Editing Problems</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#changes-not-saving">Changes Not Saving</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cant-see-other-users">Can't See Other Users</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#text-formatting-not-working">Text Formatting Not Working</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formatting-issues">Formatting Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#headings-not-working">Headings Not Working</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#images-not-uploading">Images Not Uploading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#colors-not-working">Colors Not Working</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#export-problems">Export Problems</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#export-button-missing">Export Button Missing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#export-file-corrupted">Export File Corrupted</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#images-missing-in-export">Images Missing in Export</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-issues">Performance Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#slow-loading">Slow Loading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#laggy-editing">Laggy Editing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#high-memory-usage">High Memory Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plugin-issues">Plugin Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#plugin-not-working">Plugin Not Working</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#plugin-conflicts">Plugin Conflicts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#administration-issues">Administration Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cant-login-to-admin">Can't Login to Admin</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-connection-failed">Database Connection Failed</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#services-wont-start">Services Won't Start</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-more-help">Getting More Help</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#before-asking-for-help">Before Asking for Help</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contact-information">Contact Information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-error-messages">Common Error Messages</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#connection-lost">"Connection Lost"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-error">"Database Error"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#permission-denied">"Permission Denied"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#plugin-not-found">"Plugin Not Found"</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Etherpad Plus Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/your-username/docker-etherpad/edit/master/docs/troubleshooting.md">Edit on docker-etherpad</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<p>Common issues and solutions for Etherpad Plus.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#access-issues">Access Issues</a></li>
+<li><a href="#editing-problems">Editing Problems</a></li>
+<li><a href="#formatting-issues">Formatting Issues</a></li>
+<li><a href="#export-problems">Export Problems</a></li>
+<li><a href="#performance-issues">Performance Issues</a></li>
+<li><a href="#plugin-issues">Plugin Issues</a></li>
+<li><a href="#administration-issues">Administration Issues</a></li>
+</ol>
+<hr />
+<h2 id="access-issues">Access Issues<a class="headerlink" href="#access-issues" title="Permanent link">&para;</a></h2>
+<h3 id="cant-access-etherpad-plus">Can't Access Etherpad Plus<a class="headerlink" href="#cant-access-etherpad-plus" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Browser shows "connection refused"
+- Page won't load
+- Timeout errors</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check if services are running:</strong>
+   <code>bash
+   docker compose ps</code></li>
+<li>Services should show "Up" status</li>
+<li>
+<p>If not running, start with: <code>docker compose up -d</code></p>
+</li>
+<li>
+<p><strong>Check port configuration:</strong></p>
+</li>
+<li>Verify port in <code>.env</code>: <code>DOCKER_COMPOSE_APP_PORT_PUBLISHED</code></li>
+<li>Default: <code>11155</code></li>
+<li>
+<p>Try: <code>http://localhost:11155</code></p>
+</li>
+<li>
+<p><strong>Check firewall:</strong></p>
+</li>
+<li>Ensure port is not blocked</li>
+<li>Check firewall rules</li>
+<li>
+<p>Verify network access</p>
+</li>
+<li>
+<p><strong>Check logs:</strong>
+   <code>bash
+   docker compose logs etherpad</code></p>
+</li>
+<li>Look for error messages</li>
+<li>Check startup errors</li>
+</ol>
+<h3 id="wrong-port-or-url">Wrong Port or URL<a class="headerlink" href="#wrong-port-or-url" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Can't find Etherpad at expected URL</p>
+<p><strong>Solutions:</strong>
+- Check <code>.env</code> file for port configuration
+- Verify domain/FQDN setting
+- Check reverse proxy configuration (if used)
+- Try default: <code>http://localhost:11155</code></p>
+<hr />
+<h2 id="editing-problems">Editing Problems<a class="headerlink" href="#editing-problems" title="Permanent link">&para;</a></h2>
+<h3 id="changes-not-saving">Changes Not Saving<a class="headerlink" href="#changes-not-saving" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Text disappears
+- Changes don't persist
+- "Connection lost" messages</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check connection:</strong></li>
+<li>Look for connection status indicator</li>
+<li>Refresh page if disconnected</li>
+<li>
+<p>Check network connection</p>
+</li>
+<li>
+<p><strong>Check browser:</strong></p>
+</li>
+<li>Try different browser</li>
+<li>Clear browser cache</li>
+<li>
+<p>Disable browser extensions</p>
+</li>
+<li>
+<p><strong>Check database:</strong>
+   <code>bash
+   docker compose logs postgres</code></p>
+</li>
+<li>Look for database errors</li>
+<li>Verify database is running</li>
+</ol>
+<h3 id="cant-see-other-users">Can't See Other Users<a class="headerlink" href="#cant-see-other-users" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Other users' cursors not visible
+- Author list empty
+- No collaboration indicators</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check plugin:</strong></li>
+<li>Verify <code>ep_author_neat2</code> is installed</li>
+<li>
+<p>Check plugin status in admin panel</p>
+</li>
+<li>
+<p><strong>Refresh page:</strong></p>
+</li>
+<li>Reload browser page</li>
+<li>
+<p>Clear browser cache</p>
+</li>
+<li>
+<p><strong>Check network:</strong></p>
+</li>
+<li>Verify WebSocket connection</li>
+<li>Check firewall for WebSocket ports</li>
+</ol>
+<h3 id="text-formatting-not-working">Text Formatting Not Working<a class="headerlink" href="#text-formatting-not-working" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Formatting buttons don't work
+- Text doesn't change appearance
+- Formatting disappears</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Select text first:</strong></li>
+<li>Highlight text before formatting</li>
+<li>
+<p>Some formatting requires selection</p>
+</li>
+<li>
+<p><strong>Check plugins:</strong></p>
+</li>
+<li>Verify formatting plugins installed</li>
+<li>
+<p>Check plugin status in admin</p>
+</li>
+<li>
+<p><strong>Try keyboard shortcuts:</strong></p>
+</li>
+<li>Ctrl+B for bold</li>
+<li>Ctrl+I for italic</li>
+<li>
+<p>May work if buttons don't</p>
+</li>
+<li>
+<p><strong>Refresh page:</strong></p>
+</li>
+<li>Reload browser</li>
+<li>Clear cache</li>
+</ol>
+<hr />
+<h2 id="formatting-issues">Formatting Issues<a class="headerlink" href="#formatting-issues" title="Permanent link">&para;</a></h2>
+<h3 id="headings-not-working">Headings Not Working<a class="headerlink" href="#headings-not-working" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Heading dropdown doesn't work
+- Headings don't appear different
+- TOC not generating</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check plugin:</strong></li>
+<li>Verify <code>ep_headings2</code> installed</li>
+<li>
+<p>Check <code>ep_table_of_contents</code> for TOC</p>
+</li>
+<li>
+<p><strong>Use dropdown:</strong></p>
+</li>
+<li>Select heading level from dropdown</li>
+<li>
+<p>Not just typing "#" symbol</p>
+</li>
+<li>
+<p><strong>Check formatting:</strong></p>
+</li>
+<li>Headings may look similar</li>
+<li>Check in exported document</li>
+</ol>
+<h3 id="images-not-uploading">Images Not Uploading<a class="headerlink" href="#images-not-uploading" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Upload button doesn't work
+- Images don't appear
+- Upload fails</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check file size:</strong></li>
+<li>Maximum: 5MB per image</li>
+<li>
+<p>Compress large images</p>
+</li>
+<li>
+<p><strong>Check file format:</strong></p>
+</li>
+<li>Supported: JPEG, PNG, GIF, BMP</li>
+<li>
+<p>Convert if needed</p>
+</li>
+<li>
+<p><strong>Check permissions:</strong></p>
+</li>
+<li>Verify image directory writable</li>
+<li>
+<p>Check container permissions</p>
+</li>
+<li>
+<p><strong>Check plugin:</strong></p>
+</li>
+<li>Verify <code>ep_image_upload</code> installed</li>
+<li>Check plugin configuration</li>
+</ol>
+<h3 id="colors-not-working">Colors Not Working<a class="headerlink" href="#colors-not-working" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Font color button doesn't work
+- Colors don't apply
+- Color picker not showing</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Select text first:</strong></li>
+<li>Must select text before coloring</li>
+<li>
+<p>Empty selection won't work</p>
+</li>
+<li>
+<p><strong>Check plugin:</strong></p>
+</li>
+<li>Verify <code>ep_font_color</code> installed</li>
+<li>
+<p>Check plugin status</p>
+</li>
+<li>
+<p><strong>Try different browser:</strong></p>
+</li>
+<li>Browser compatibility issue</li>
+<li>Update browser</li>
+</ol>
+<hr />
+<h2 id="export-problems">Export Problems<a class="headerlink" href="#export-problems" title="Permanent link">&para;</a></h2>
+<h3 id="export-button-missing">Export Button Missing<a class="headerlink" href="#export-button-missing" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Can't find export option
+- File menu empty
+- No export button</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check menu:</strong></li>
+<li>Look in File menu</li>
+<li>May be in different location</li>
+<li>
+<p>Check toolbar</p>
+</li>
+<li>
+<p><strong>Check permissions:</strong></p>
+</li>
+<li>Export may require login</li>
+<li>
+<p>Check authentication settings</p>
+</li>
+<li>
+<p><strong>Use API:</strong></p>
+</li>
+<li>Try direct URL: <code>/p/PadName/export/html</code></li>
+<li>Or <code>/p/PadName/export/odt</code></li>
+</ol>
+<h3 id="export-file-corrupted">Export File Corrupted<a class="headerlink" href="#export-file-corrupted" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- File won't open
+- Error opening file
+- File appears empty</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Re-export:</strong></li>
+<li>Try exporting again</li>
+<li>
+<p>May be temporary issue</p>
+</li>
+<li>
+<p><strong>Try different format:</strong></p>
+</li>
+<li>Try HTML instead of ODT</li>
+<li>
+<p>Or ODT instead of DOCX</p>
+</li>
+<li>
+<p><strong>Check LibreOffice:</strong></p>
+</li>
+<li>DOCX requires LibreOffice</li>
+<li>Verify LibreOffice installed</li>
+<li>Check server logs</li>
+</ol>
+<h3 id="images-missing-in-export">Images Missing in Export<a class="headerlink" href="#images-missing-in-export" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Images don't appear in exported file
+- Broken image links
+- Export incomplete</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check image format:</strong></li>
+<li>Verify supported formats</li>
+<li>
+<p>Re-upload if needed</p>
+</li>
+<li>
+<p><strong>Check image size:</strong></p>
+</li>
+<li>Large images may fail</li>
+<li>
+<p>Optimize images</p>
+</li>
+<li>
+<p><strong>Check export format:</strong></p>
+</li>
+<li>Some formats handle images differently</li>
+<li>Try HTML format</li>
+</ol>
+<hr />
+<h2 id="performance-issues">Performance Issues<a class="headerlink" href="#performance-issues" title="Permanent link">&para;</a></h2>
+<h3 id="slow-loading">Slow Loading<a class="headerlink" href="#slow-loading" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Page takes long to load
+- Laggy editing
+- Timeouts</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check server resources:</strong>
+   <code>bash
+   docker stats</code></li>
+<li>Monitor CPU/memory usage</li>
+<li>
+<p>Add resources if needed</p>
+</li>
+<li>
+<p><strong>Check document size:</strong></p>
+</li>
+<li>Large documents load slowly</li>
+<li>
+<p>Consider breaking into sections</p>
+</li>
+<li>
+<p><strong>Check images:</strong></p>
+</li>
+<li>Many/large images slow loading</li>
+<li>Optimize images</li>
+<li>
+<p>Remove unnecessary images</p>
+</li>
+<li>
+<p><strong>Check database:</strong>
+   <code>bash
+   docker compose logs postgres</code></p>
+</li>
+<li>Look for slow queries</li>
+<li>Optimize database</li>
+</ol>
+<h3 id="laggy-editing">Laggy Editing<a class="headerlink" href="#laggy-editing" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Typing delay
+- Cursor lag
+- Slow response</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check connection:</strong></li>
+<li>Slow network causes lag</li>
+<li>Check internet connection</li>
+<li>
+<p>Try different network</p>
+</li>
+<li>
+<p><strong>Reduce document size:</strong></p>
+</li>
+<li>Large documents lag</li>
+<li>
+<p>Break into smaller pads</p>
+</li>
+<li>
+<p><strong>Close other tabs:</strong></p>
+</li>
+<li>Browser resources limited</li>
+<li>
+<p>Close unnecessary tabs</p>
+</li>
+<li>
+<p><strong>Check browser:</strong></p>
+</li>
+<li>Update browser</li>
+<li>Clear cache</li>
+<li>Try different browser</li>
+</ol>
+<h3 id="high-memory-usage">High Memory Usage<a class="headerlink" href="#high-memory-usage" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Server slow
+- Out of memory errors
+- Crashes</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check memory:</strong>
+   <code>bash
+   docker stats</code></li>
+<li>Monitor memory usage</li>
+<li>
+<p>Add memory if needed</p>
+</li>
+<li>
+<p><strong>Clean up pads:</strong></p>
+</li>
+<li>Delete unused pads</li>
+<li>
+<p>Archive old documents</p>
+</li>
+<li>
+<p><strong>Optimize database:</strong>
+   <code>bash
+   docker compose exec postgres psql -U etherpad -d etherpad -c "VACUUM;"</code></p>
+</li>
+<li>
+<p><strong>Restart services:</strong>
+   <code>bash
+   docker compose restart</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="plugin-issues">Plugin Issues<a class="headerlink" href="#plugin-issues" title="Permanent link">&para;</a></h2>
+<h3 id="plugin-not-working">Plugin Not Working<a class="headerlink" href="#plugin-not-working" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Feature not available
+- Button missing
+- Functionality broken</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check installation:</strong></li>
+<li>Verify plugin installed</li>
+<li>Check admin → Plugins</li>
+<li>
+<p>Review plugin list</p>
+</li>
+<li>
+<p><strong>Check configuration:</strong></p>
+</li>
+<li>Review plugin settings</li>
+<li>Check <code>config/etherpad.settings.json</code></li>
+<li>
+<p>Verify configuration correct</p>
+</li>
+<li>
+<p><strong>Check logs:</strong>
+   <code>bash
+   docker compose logs etherpad | grep -i plugin</code></p>
+</li>
+<li>Look for plugin errors</li>
+<li>
+<p>Check startup messages</p>
+</li>
+<li>
+<p><strong>Rebuild image:</strong>
+   <code>bash
+   docker compose build --no-cache etherpad
+   docker compose up -d</code></p>
+</li>
+</ol>
+<h3 id="plugin-conflicts">Plugin Conflicts<a class="headerlink" href="#plugin-conflicts" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Features conflict
+- Errors in console
+- Crashes</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Identify conflict:</strong></li>
+<li>Check error logs</li>
+<li>Test plugins individually</li>
+<li>
+<p>Review plugin compatibility</p>
+</li>
+<li>
+<p><strong>Disable problematic plugin:</strong></p>
+</li>
+<li>Edit <code>dockerfile.etherpad</code></li>
+<li>Remove plugin from install</li>
+<li>
+<p>Rebuild image</p>
+</li>
+<li>
+<p><strong>Update plugins:</strong></p>
+</li>
+<li>Check for updates</li>
+<li>Update to latest versions</li>
+<li>May fix conflicts</li>
+</ol>
+<hr />
+<h2 id="administration-issues">Administration Issues<a class="headerlink" href="#administration-issues" title="Permanent link">&para;</a></h2>
+<h3 id="cant-login-to-admin">Can't Login to Admin<a class="headerlink" href="#cant-login-to-admin" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Admin password not working
+- Login fails
+- Access denied</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check password:</strong></li>
+<li>Verify <code>.env</code> file password</li>
+<li>Check for typos</li>
+<li>
+<p>Reset if needed</p>
+</li>
+<li>
+<p><strong>Check configuration:</strong></p>
+</li>
+<li>Verify admin user configured</li>
+<li>Check <code>config/etherpad.settings.json</code></li>
+<li>
+<p>Review authentication settings</p>
+</li>
+<li>
+<p><strong>Reset password:</strong></p>
+</li>
+<li>Update <code>.env</code> file</li>
+<li>Restart services</li>
+<li>Try again</li>
+</ol>
+<h3 id="database-connection-failed">Database Connection Failed<a class="headerlink" href="#database-connection-failed" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- "Database error" messages
+- Can't save changes
+- Service won't start</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check database:</strong>
+   <code>bash
+   docker compose ps postgres
+   docker compose logs postgres</code></li>
+<li>Verify database running</li>
+<li>
+<p>Check for errors</p>
+</li>
+<li>
+<p><strong>Check credentials:</strong></p>
+</li>
+<li>Verify <code>.env</code> database settings</li>
+<li>Check username/password</li>
+<li>
+<p>Test connection</p>
+</li>
+<li>
+<p><strong>Restart database:</strong>
+   <code>bash
+   docker compose restart postgres</code></p>
+</li>
+<li>
+<p><strong>Check network:</strong></p>
+</li>
+<li>Verify services on same network</li>
+<li>Check <code>compose.yml</code> network config</li>
+</ol>
+<h3 id="services-wont-start">Services Won't Start<a class="headerlink" href="#services-wont-start" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms:</strong>
+- Docker containers exit
+- Services crash
+- Startup errors</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check logs:</strong>
+   <code>bash
+   docker compose logs</code></li>
+<li>Review all error messages</li>
+<li>
+<p>Identify root cause</p>
+</li>
+<li>
+<p><strong>Check configuration:</strong></p>
+</li>
+<li>Verify <code>.env</code> file correct</li>
+<li>Check <code>compose.yml</code> syntax</li>
+<li>
+<p>Review settings file</p>
+</li>
+<li>
+<p><strong>Check resources:</strong>
+   <code>bash
+   docker system df</code></p>
+</li>
+<li>Verify disk space</li>
+<li>
+<p>Check memory available</p>
+</li>
+<li>
+<p><strong>Rebuild:</strong>
+   <code>bash
+   docker compose down
+   docker compose build --no-cache
+   docker compose up -d</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="getting-more-help">Getting More Help<a class="headerlink" href="#getting-more-help" title="Permanent link">&para;</a></h2>
+<h3 id="before-asking-for-help">Before Asking for Help<a class="headerlink" href="#before-asking-for-help" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Check logs:</strong>
+   <code>bash
+   docker compose logs</code></p>
+</li>
+<li>
+<p><strong>Document the issue:</strong></p>
+</li>
+<li>What were you doing?</li>
+<li>What error messages?</li>
+<li>
+<p>When did it start?</p>
+</li>
+<li>
+<p><strong>Try basic fixes:</strong></p>
+</li>
+<li>Restart services</li>
+<li>Clear browser cache</li>
+<li>Check configuration</li>
+</ol>
+<h3 id="contact-information">Contact Information<a class="headerlink" href="#contact-information" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>System Administrator:</strong> Contact your IT/admin</li>
+<li><strong>Documentation:</strong> See <a href="../user-guide/">User Guide</a></li>
+<li><strong>Technical Docs:</strong> See <a href="../README.md">README</a></li>
+</ul>
+<hr />
+<h2 id="common-error-messages">Common Error Messages<a class="headerlink" href="#common-error-messages" title="Permanent link">&para;</a></h2>
+<h3 id="connection-lost">"Connection Lost"<a class="headerlink" href="#connection-lost" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning:</strong> Lost connection to server</p>
+<p><strong>Fix:</strong>
+- Refresh page
+- Check network connection
+- Verify services running</p>
+<h3 id="database-error">"Database Error"<a class="headerlink" href="#database-error" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning:</strong> Database connection issue</p>
+<p><strong>Fix:</strong>
+- Check database service
+- Verify credentials
+- Check logs</p>
+<h3 id="permission-denied">"Permission Denied"<a class="headerlink" href="#permission-denied" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning:</strong> Access denied</p>
+<p><strong>Fix:</strong>
+- Check authentication
+- Verify permissions
+- Contact administrator</p>
+<h3 id="plugin-not-found">"Plugin Not Found"<a class="headerlink" href="#plugin-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning:</strong> Plugin not installed</p>
+<p><strong>Fix:</strong>
+- Check plugin installation
+- Rebuild image
+- Verify plugin name</p>
+<hr />
+<p><strong>Still having issues?</strong> Contact your system administrator with:
+- Error messages
+- Steps to reproduce
+- Log output
+- Browser/OS information</p>
+<hr />
+<p><strong>Back to:</strong> <a href="../">User Documentation</a> →</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api-guide/" class="btn btn-neutral float-left" title="API Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2026 Etherpad Plus Team</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/your-username/docker-etherpad" class="fa fa-code-fork" style="color: #fcfcfc"> docker-etherpad</a>
+        </span>
+    
+    
+      <span><a href="../api-guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

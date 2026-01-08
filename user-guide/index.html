@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Etherpad Plus Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>User Guide - Etherpad Plus Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "User Guide";
+        var mkdocs_page_input_path = "user-guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Etherpad Plus Documentation
+        </a>
+        <div class="version">
+          1.0.0
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">User Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interface-overview">Interface Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#main-components">Main Components</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#toolbar-buttons">Toolbar Buttons</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#text-formatting">Text Formatting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-formatting">Basic Formatting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#font-colors">Font Colors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#text-alignment">Text Alignment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-headings">Working with Headings</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-headings">Creating Headings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inserting-images">Inserting Images</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#upload-an-image">Upload an Image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#drag-and-drop">Drag and Drop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#image-tips">Image Tips</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-comments">Using Comments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-a-comment">Adding a Comment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#viewing-comments">Viewing Comments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replying-to-comments">Replying to Comments</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resolving-comments">Resolving Comments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents_1">Table of Contents</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#viewing-the-table-of-contents">Viewing the Table of Contents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-it-works">How It Works</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generating-a-toc">Generating a TOC</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hyperlinks">Hyperlinks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-a-link">Creating a Link</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#editing-links">Editing Links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#link-tips">Link Tips</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#markdown-support">Markdown Support</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-markdown">Basic Markdown</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-markdown">Using Markdown</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#markdown-examples">Markdown Examples</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#collaboration-features">Collaboration Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#real-time-editing">Real-Time Editing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#author-colors">Author Colors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#chat-if-enabled">Chat (if enabled)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exporting-documents">Exporting Documents</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#quick-export">Quick Export</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#export-tips">Export Tips</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#text-formatting_1">Text Formatting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#navigation">Navigation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#editing">Editing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tips-and-best-practices">Tips and Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#document-organization">Document Organization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collaboration">Collaboration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance">Performance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#need-more-help">Need More Help?</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../plugin-features/">Plugin Features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../export-guide/">Export Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../admin-guide/">Admin Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-guide/">API Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Etherpad Plus Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/your-username/docker-etherpad/edit/master/docs/user-guide.md">Edit on docker-etherpad</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="etherpad-plus-user-guide">Etherpad Plus - User Guide<a class="headerlink" href="#etherpad-plus-user-guide" title="Permanent link">&para;</a></h1>
+<p>Complete guide to using Etherpad Plus for collaborative document editing.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#interface-overview">Interface Overview</a></li>
+<li><a href="#text-formatting">Text Formatting</a></li>
+<li><a href="#working-with-headings">Working with Headings</a></li>
+<li><a href="#inserting-images">Inserting Images</a></li>
+<li><a href="#using-comments">Using Comments</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#hyperlinks">Hyperlinks</a></li>
+<li><a href="#markdown-support">Markdown Support</a></li>
+<li><a href="#collaboration-features">Collaboration Features</a></li>
+<li><a href="#exporting-documents">Exporting Documents</a></li>
+</ol>
+<hr />
+<h2 id="interface-overview">Interface Overview<a class="headerlink" href="#interface-overview" title="Permanent link">&para;</a></h2>
+<h3 id="main-components">Main Components<a class="headerlink" href="#main-components" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Toolbar</strong> - Formatting options at the top</li>
+<li><strong>Editor Area</strong> - Main writing space</li>
+<li><strong>Author List</strong> - Shows who's currently editing (top right)</li>
+<li><strong>Chat Panel</strong> - Optional chat sidebar (if enabled)</li>
+<li><strong>Comments Panel</strong> - Sidebar for comments (if enabled)</li>
+</ul>
+<h3 id="toolbar-buttons">Toolbar Buttons<a class="headerlink" href="#toolbar-buttons" title="Permanent link">&para;</a></h3>
+<p>The toolbar provides quick access to formatting options:</p>
+<ul>
+<li><strong>Bold</strong> (B) - Make selected text bold</li>
+<li><strong>Italic</strong> (I) - Make selected text italic</li>
+<li><strong>Underline</strong> (U) - Underline selected text</li>
+<li><strong>Strikethrough</strong> (S) - Cross out text</li>
+<li><strong>Font Color</strong> - Change text color</li>
+<li><strong>Text Alignment</strong> - Left, center, right, justify</li>
+<li><strong>Headings</strong> - H1, H2, H3 dropdown</li>
+<li><strong>Image Upload</strong> - Insert images</li>
+<li><strong>More options</strong> - Additional formatting</li>
+</ul>
+<hr />
+<h2 id="text-formatting">Text Formatting<a class="headerlink" href="#text-formatting" title="Permanent link">&para;</a></h2>
+<h3 id="basic-formatting">Basic Formatting<a class="headerlink" href="#basic-formatting" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Select text</strong> by clicking and dragging</li>
+<li><strong>Click a toolbar button</strong> or use keyboard shortcuts:</li>
+<li><strong>Bold</strong>: Ctrl+B (Cmd+B on Mac)</li>
+<li><strong>Italic</strong>: Ctrl+I (Cmd+I on Mac)</li>
+<li><strong>Underline</strong>: Ctrl+U (Cmd+U on Mac)</li>
+</ol>
+<h3 id="font-colors">Font Colors<a class="headerlink" href="#font-colors" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Select the text you want to color</li>
+<li>Click the <strong>Font Color</strong> button (A with colored underline)</li>
+<li>Choose a color from the palette</li>
+<li>Your text changes color immediately</li>
+</ol>
+<h3 id="text-alignment">Text Alignment<a class="headerlink" href="#text-alignment" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Place your cursor in the paragraph you want to align</li>
+<li>Click an alignment button:</li>
+<li><strong>Left</strong> - Align text to the left (default)</li>
+<li><strong>Center</strong> - Center text</li>
+<li><strong>Right</strong> - Align text to the right</li>
+<li><strong>Justify</strong> - Stretch text to fill the line</li>
+</ol>
+<hr />
+<h2 id="working-with-headings">Working with Headings<a class="headerlink" href="#working-with-headings" title="Permanent link">&para;</a></h2>
+<p>Headings help organize your document and create structure.</p>
+<h3 id="creating-headings">Creating Headings<a class="headerlink" href="#creating-headings" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Place your cursor on the line you want to make a heading</li>
+<li>Click the <strong>Headings</strong> dropdown in the toolbar</li>
+<li>Select:</li>
+<li><strong>Heading 1</strong> (H1) - Main title (largest)</li>
+<li><strong>Heading 2</strong> (H2) - Section title (medium)</li>
+<li><strong>Heading 3</strong> (H3) - Subsection title (smallest)</li>
+<li><strong>Normal</strong> - Regular paragraph text</li>
+</ol>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use <strong>H1</strong> for document titles (only one per document)</li>
+<li>Use <strong>H2</strong> for major sections</li>
+<li>Use <strong>H3</strong> for subsections</li>
+<li>Headings automatically appear in the <a href="#table-of-contents">Table of Contents</a></li>
+</ul>
+<hr />
+<h2 id="inserting-images">Inserting Images<a class="headerlink" href="#inserting-images" title="Permanent link">&para;</a></h2>
+<h3 id="upload-an-image">Upload an Image<a class="headerlink" href="#upload-an-image" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click the <strong>Image Upload</strong> button in the toolbar (picture icon)</li>
+<li><strong>Choose a file</strong> from your computer</li>
+<li>Supported formats: JPEG, JPG, PNG, GIF, BMP</li>
+<li>Maximum size: 5MB per image</li>
+<li>The image appears in your document</li>
+</ol>
+<h3 id="drag-and-drop">Drag and Drop<a class="headerlink" href="#drag-and-drop" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Drag an image file</strong> from your computer</li>
+<li><strong>Drop it</strong> into the editor</li>
+<li>The image uploads automatically</li>
+</ol>
+<h3 id="image-tips">Image Tips<a class="headerlink" href="#image-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Images are stored on the server</li>
+<li>Images appear inline with your text</li>
+<li>You can resize images by selecting them</li>
+<li>Images are included when you export documents</li>
+</ul>
+<hr />
+<h2 id="using-comments">Using Comments<a class="headerlink" href="#using-comments" title="Permanent link">&para;</a></h2>
+<p>Comments allow you to leave feedback without editing the main text.</p>
+<h3 id="adding-a-comment">Adding a Comment<a class="headerlink" href="#adding-a-comment" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Select the text</strong> you want to comment on</li>
+<li>Click the <strong>Comments</strong> button or open the comments sidebar</li>
+<li><strong>Type your comment</strong> in the comment box</li>
+<li>Click <strong>Save</strong> or press Enter</li>
+<li>A comment marker appears next to the text</li>
+</ol>
+<h3 id="viewing-comments">Viewing Comments<a class="headerlink" href="#viewing-comments" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Comments sidebar</strong> shows all comments</li>
+<li><strong>Click a comment</strong> to see which text it refers to</li>
+<li><strong>Comment markers</strong> appear as colored highlights in the text</li>
+</ul>
+<h3 id="replying-to-comments">Replying to Comments<a class="headerlink" href="#replying-to-comments" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click on an existing comment</li>
+<li>Type your reply</li>
+<li>Save your reply</li>
+</ol>
+<h3 id="resolving-comments">Resolving Comments<a class="headerlink" href="#resolving-comments" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Mark comments as resolved when addressed</li>
+<li>Resolved comments remain visible but are marked as complete</li>
+</ul>
+<hr />
+<h2 id="table-of-contents_1">Table of Contents<a class="headerlink" href="#table-of-contents_1" title="Permanent link">&para;</a></h2>
+<p>The Table of Contents (TOC) automatically generates from your headings.</p>
+<h3 id="viewing-the-table-of-contents">Viewing the Table of Contents<a class="headerlink" href="#viewing-the-table-of-contents" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Look for the <strong>TOC button</strong> in the toolbar</li>
+<li>Click it to show/hide the table of contents</li>
+<li>The TOC appears as a sidebar or dropdown</li>
+</ol>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Automatically updates</strong> as you add or change headings</li>
+<li><strong>Click any item</strong> to jump to that section</li>
+<li><strong>Only shows headings</strong> (H1, H2, H3)</li>
+</ul>
+<h3 id="generating-a-toc">Generating a TOC<a class="headerlink" href="#generating-a-toc" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create headings in your document (see <a href="#working-with-headings">Working with Headings</a>)</li>
+<li>The TOC automatically includes them</li>
+<li>No manual updates needed!</li>
+</ol>
+<hr />
+<h2 id="hyperlinks">Hyperlinks<a class="headerlink" href="#hyperlinks" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-link">Creating a Link<a class="headerlink" href="#creating-a-link" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Select the text</strong> you want to turn into a link</li>
+<li>Click the <strong>Link</strong> button in the toolbar (chain icon)</li>
+<li><strong>Enter the URL</strong> in the dialog box</li>
+<li>Example: <code>https://example.com</code></li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<h3 id="editing-links">Editing Links<a class="headerlink" href="#editing-links" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Click on the linked text</strong></li>
+<li>Click the <strong>Link</strong> button again</li>
+<li><strong>Modify the URL</strong> or remove the link</li>
+<li>Save your changes</li>
+</ol>
+<h3 id="link-tips">Link Tips<a class="headerlink" href="#link-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Links are clickable in the editor</li>
+<li>Links work in exported documents</li>
+<li>Use descriptive link text (not just "click here")</li>
+</ul>
+<hr />
+<h2 id="markdown-support">Markdown Support<a class="headerlink" href="#markdown-support" title="Permanent link">&para;</a></h2>
+<p>Etherpad Plus supports Markdown syntax for quick formatting.</p>
+<h3 id="basic-markdown">Basic Markdown<a class="headerlink" href="#basic-markdown" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Bold</strong>: <code>**text**</code> or <code>__text__</code></li>
+<li><strong>Italic</strong>: <code>*text*</code> or <code>_text_</code></li>
+<li><strong>Heading</strong>: <code># H1</code>, <code>## H2</code>, <code>### H3</code></li>
+<li><strong>Link</strong>: <code>[text](url)</code></li>
+<li><strong>List</strong>: <code>- item</code> or <code>1. item</code></li>
+</ul>
+<h3 id="using-markdown">Using Markdown<a class="headerlink" href="#using-markdown" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Type Markdown syntax</strong> as you write</li>
+<li><strong>It converts automatically</strong> to formatted text</li>
+<li>Works alongside toolbar buttons</li>
+</ol>
+<h3 id="markdown-examples">Markdown Examples<a class="headerlink" href="#markdown-examples" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-markdown"># Main Title
+
+## Section
+
+**Bold text** and *italic text*
+
+- Bullet point
+- Another point
+
+[Link text](https://example.com)
+</code></pre>
+
+<hr />
+<h2 id="collaboration-features">Collaboration Features<a class="headerlink" href="#collaboration-features" title="Permanent link">&para;</a></h2>
+<h3 id="real-time-editing">Real-Time Editing<a class="headerlink" href="#real-time-editing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>See other users</strong> - Their cursors appear in different colors</li>
+<li><strong>See their names</strong> - Displayed in the author list (top right)</li>
+<li><strong>Changes appear instantly</strong> - No refresh needed</li>
+<li><strong>No conflicts</strong> - Etherpad handles simultaneous edits automatically</li>
+</ul>
+<h3 id="author-colors">Author Colors<a class="headerlink" href="#author-colors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Each author gets a <strong>unique color</strong></li>
+<li>Their <strong>cursor</strong> appears in that color</li>
+<li>Their <strong>name</strong> appears in the author list</li>
+<li>Makes it easy to see who's editing what</li>
+</ul>
+<h3 id="chat-if-enabled">Chat (if enabled)<a class="headerlink" href="#chat-if-enabled" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Sidebar chat</strong> for quick messages</li>
+<li><strong>Real-time</strong> - Messages appear instantly</li>
+<li><strong>Persistent</strong> - Chat history stays with the pad</li>
+</ul>
+<hr />
+<h2 id="exporting-documents">Exporting Documents<a class="headerlink" href="#exporting-documents" title="Permanent link">&para;</a></h2>
+<p>See the <a href="../export-guide/">Export Guide</a> for detailed instructions.</p>
+<h3 id="quick-export">Quick Export<a class="headerlink" href="#quick-export" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click <strong>File</strong> → <strong>Export</strong></li>
+<li>Choose format:</li>
+<li><strong>HTML</strong> - Web format</li>
+<li><strong>ODT</strong> - OpenDocument format (opens in LibreOffice/Word)</li>
+<li><strong>DOCX</strong> - Microsoft Word format (if available)</li>
+<li><strong>Download</strong> your file</li>
+</ol>
+<h3 id="export-tips">Export Tips<a class="headerlink" href="#export-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Headings are preserved</strong> in exports</li>
+<li><strong>Images are included</strong> in exported files</li>
+<li><strong>Formatting is maintained</strong> across formats</li>
+<li><strong>Use ODT or DOCX</strong> for final Word documents</li>
+</ul>
+<hr />
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h2>
+<h3 id="text-formatting_1">Text Formatting<a class="headerlink" href="#text-formatting_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ctrl+B</strong> / <strong>Cmd+B</strong> - Bold</li>
+<li><strong>Ctrl+I</strong> / <strong>Cmd+I</strong> - Italic</li>
+<li><strong>Ctrl+U</strong> / <strong>Cmd+U</strong> - Underline</li>
+<li><strong>Ctrl+Z</strong> / <strong>Cmd+Z</strong> - Undo</li>
+<li><strong>Ctrl+Y</strong> / <strong>Cmd+Y</strong> - Redo</li>
+</ul>
+<h3 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ctrl+Home</strong> - Go to start of document</li>
+<li><strong>Page Up/Down</strong> - Scroll through document</li>
+<li><strong>Ctrl+F</strong> - Find text (if available)</li>
+</ul>
+<h3 id="editing">Editing<a class="headerlink" href="#editing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Delete</strong> - Delete selected text</li>
+<li><strong>Tab</strong> - Indent (if supported)</li>
+<li><strong>Enter</strong> - New line</li>
+<li><strong>Shift+Enter</strong> - Line break (no new paragraph)</li>
+</ul>
+<hr />
+<h2 id="tips-and-best-practices">Tips and Best Practices<a class="headerlink" href="#tips-and-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="document-organization">Document Organization<a class="headerlink" href="#document-organization" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Use headings</strong> to structure your document</li>
+<li><strong>Create a table of contents</strong> for long documents</li>
+<li><strong>Use comments</strong> for feedback and discussion</li>
+<li><strong>Keep paragraphs focused</strong> - One idea per paragraph</li>
+</ol>
+<h3 id="collaboration">Collaboration<a class="headerlink" href="#collaboration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Communicate</strong> - Use comments or chat to coordinate</li>
+<li><strong>Watch for conflicts</strong> - Etherpad handles them, but be aware</li>
+<li><strong>Save important versions</strong> - Export periodically</li>
+<li><strong>Use author colors</strong> - Know who's editing what</li>
+</ol>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Large documents</strong> may load slowly - Consider breaking into sections</li>
+<li><strong>Many images</strong> can slow editing - Optimize images before uploading</li>
+<li><strong>Many users</strong> editing simultaneously works well - Etherpad handles it</li>
+</ol>
+<hr />
+<h2 id="need-more-help">Need More Help?<a class="headerlink" href="#need-more-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li>See <a href="../plugin-features/">Plugin Features</a> for detailed feature documentation</li>
+<li>Check <a href="../troubleshooting/">Troubleshooting</a> for common issues</li>
+<li>Contact your administrator for technical support</li>
+</ul>
+<hr />
+<p><strong>Next:</strong> Learn about <a href="../plugin-features/">all plugin features</a> →</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting-started/" class="btn btn-neutral float-left" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../plugin-features/" class="btn btn-neutral float-right" title="Plugin Features">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2026 Etherpad Plus Team</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/your-username/docker-etherpad" class="fa fa-code-fork" style="color: #fcfcfc"> docker-etherpad</a>
+        </span>
+    
+    
+      <span><a href="../getting-started/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../plugin-features/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
